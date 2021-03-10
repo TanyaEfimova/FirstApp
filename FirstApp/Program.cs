@@ -6,8 +6,12 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            double result = 5 % 2;
-            Console.WriteLine("5 % 2 = {0}", result);
+            int counter = 10;
+            Console.WriteLine("Value : {0} Increment: {1}", counter, ++counter);
+            Console.WriteLine("Value : {0} Increment: {1}", counter, counter++);
+
+            Console.WriteLine("Value : {0} Decrement: {1}", counter, ++counter);
+            Console.WriteLine("Value : {0} Decrement: {1}", counter, counter++);
 
             Console.ReadKey();
         }
