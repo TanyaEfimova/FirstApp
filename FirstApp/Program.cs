@@ -7,7 +7,12 @@ namespace FirstApp
         static void Main(string[] args)
         {
             int olddata = 6;
-            byte data = (byte)olddata;
+            string data = olddata.ToString();
+
+            Console.WriteLine(data);
+
+            Console.WriteLine(olddata);
+
 
             Console.ReadKey();
         }
