@@ -6,11 +6,10 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            DaysOfWeek MyFavoriteDay;
-
-            MyFavoriteDay = DaysOfWeek.Friday;
-
-            Console.WriteLine(MyFavoriteDay);
+            string MyName = "Татьяна";
+            Console.WriteLine("Привет, Мир");
+            Console.WriteLine();
+            Console.WriteLine($"Меня зовут {MyName}");
             Console.ReadKey();
         }
     }
