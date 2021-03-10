@@ -6,15 +6,15 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            const string MyName= "Jane";
+            string MyName = "Tanya";
+            byte MyAge = 42;
+            bool HaveIApet = false;
+            double MyShoeSize = 37.5;
 
-            Console.WriteLine(MyName);
-
-            Console.WriteLine("\t Привет, мир");
-            Console.WriteLine("\t Мне 27 лет");
-            Console.WriteLine("\t My name is \n {0}", MyName);
-            Console.WriteLine("\u0040");
-            Console.WriteLine("\u0023");
+            Console.WriteLine("My name is " + MyName);
+            Console.WriteLine("My age is " + MyAge);
+            Console.WriteLine("Do I have a pet? " + HaveIApet);
+            Console.WriteLine("My shoe size is " + MyShoeSize);
             Console.ReadKey();
         }
     }
