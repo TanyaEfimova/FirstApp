@@ -6,8 +6,8 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            double result = 10 % 3;
-            Console.WriteLine(result);
+            int olddata = 6;
+            byte data = (byte)olddata;
 
             Console.ReadKey();
         }
