@@ -14,6 +14,10 @@ namespace FirstApp
 
             Console.WriteLine("Your name is {0} and age is {1} ", name, age);
 
+            Console.Write("What is your favorite day of week? ");
+            DaysOfWeek day = (DaysOfWeek) int.Parse(Console.ReadLine());
+            Console.WriteLine("Your favorite day is {0}", day);
+
             Console.ReadKey();
         }
     }
