@@ -10,15 +10,14 @@ namespace FirstApp
             var name = Console.ReadLine();
 
             Console.Write("Enter your age: ");
-            var age= checked((byte)int.Parse(Console.ReadLine()));
-            
+            var age = Convert.ToInt32(Console.ReadLine());
+
             Console.WriteLine("Your name is {0} and age is {1} ", name, age);
 
-            var howItall = 166;
-            var myshoe = 37.5;
+            Console.Write("Enter your birthdate: ");
+            var birthdate = Console.ReadLine();
 
-            Console.WriteLine("What is my grouth? {0} sm", howItall);
-            Console.WriteLine("What is my shoe size? {0}", myshoe);
+            Console.WriteLine("Your birthdate is {0} ", birthdate);
 
             Console.ReadKey();
         }
