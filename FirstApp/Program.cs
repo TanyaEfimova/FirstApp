@@ -7,14 +7,21 @@ namespace FirstApp
         static void Main(string[] args)
         {
             Console.Write("Enter your name: ");
-            string name = Console.ReadLine();
+            var name = Console.ReadLine();
 
             Console.Write("Enter your age: ");
-            byte age= checked((byte)int.Parse(Console.ReadLine()));
-            int intage = age;
-            Console.WriteLine("Your name is {0} and age is {1} ", name, intage);
+            var age= checked((byte)int.Parse(Console.ReadLine()));
+            
+            Console.WriteLine("Your name is {0} and age is {1} ", name, age);
+
+            var howItall = 166;
+            var myshoe = 37.5;
+
+            Console.WriteLine("What is my grouth? {0} sm", howItall);
+            Console.WriteLine("What is my shoe size? {0}", myshoe);
 
             Console.ReadKey();
         }
     }
 }
+
