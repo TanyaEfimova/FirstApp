@@ -10,27 +10,28 @@ namespace FirstApp
 
 			var color = Console.ReadLine();
 
-			if (color == "red")
+			switch (color)
 			{
-				Console.BackgroundColor = ConsoleColor.Red;
-				Console.ForegroundColor = ConsoleColor.Black;
+				case "red":
+					Console.BackgroundColor = ConsoleColor.Red;
+					Console.ForegroundColor = ConsoleColor.Black;
 
-				Console.WriteLine("Your color is red!");
-			}
+					Console.WriteLine("Your color is red!");
+					break;
 
-			else if (color == "green")
-			{
-				Console.BackgroundColor = ConsoleColor.Green;
-				Console.ForegroundColor = ConsoleColor.Black;
+				case "green":
+					Console.BackgroundColor = ConsoleColor.Green;
+					Console.ForegroundColor = ConsoleColor.Black;
 
-				Console.WriteLine("Your color is green!");
-			}
-			else
-			{
-				Console.BackgroundColor = ConsoleColor.Cyan;
-				Console.ForegroundColor = ConsoleColor.Black;
+					Console.WriteLine("Your color is green!");
+					break;
 
-				Console.WriteLine("Your color is cyan!");
+				default:
+					Console.BackgroundColor = ConsoleColor.Cyan;
+					Console.ForegroundColor = ConsoleColor.Black;
+
+					Console.WriteLine("Your color is cyan!");
+					break;
 			}
 
 			Console.ReadKey();
