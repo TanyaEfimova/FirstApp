@@ -6,28 +6,17 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            int sum = 0;
+			//Размерность массива 
+			var arr = new int[] { 1, 2, 3, 4 };
+			var l = arr.Length;
 
-            while (true)
-            {
-                Console.WriteLine("Введите число");
-                var number = Convert.ToInt32(Console.ReadLine());
+			//Разные виды инициализации массива
+			int[] arr1 = new int[4] { 1, 2, 3, 5 };
+			int[] arr2 = new int[] { 1, 2, 3, 5 };
+			int[] arr3 = new[] { 1, 2, 3, 5 };
+			int[] arr4 = { 1, 2, 3, 5 };
 
-                if (number < 0)
-                {
-                    continue;
-                }
-                else if (number == 0)
-                {
-                    break;
-                }
-
-                // number > 0
-                sum += number;
-            }
-
-            Console.WriteLine("Итоговая сумма: {0}", sum);
-        }
+		}
 	}
     
 }
