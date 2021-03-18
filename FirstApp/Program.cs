@@ -6,17 +6,23 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-			//Размерность массива 
-			var arr = new int[] { 1, 2, 3, 4 };
-			var l = arr.Length;
+            var numbers = new int[] { 6, 30, 7, 14, 2, 15 };
+            int minValue = 100000,
+            minIndex = -1;
 
-			//Разные виды инициализации массива
-			int[] arr1 = new int[4] { 1, 2, 3, 5 };
-			int[] arr2 = new int[] { 1, 2, 3, 5 };
-			int[] arr3 = new[] { 1, 2, 3, 5 };
-			int[] arr4 = { 1, 2, 3, 5 };
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] < minValue)
+                {
+                    minValue = numbers[i];
+                    minIndex = i;
+                }
+            }
 
-		}
+            Console.WriteLine("Наименьший элемент массива имеет индекс {0}, значение этого элемента = {1}", minIndex, numbers[minIndex]);
+
+            Console.ReadKey();
+        }
 	}
     
 }
