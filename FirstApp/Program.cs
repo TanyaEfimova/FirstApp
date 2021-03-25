@@ -103,17 +103,19 @@ namespace FirstApp
                 Console.Write(item + " ");
             }
         }
-        
+
+        static void ChangeAge(float age)
+        {
+            Console.WriteLine("Введите возраст");
+            age =Int32.Parse(Console.ReadLine());
+        }
+
         static void Main(string[] args)
 		{
-            var array = GetArrayFromConsole(10);
-
-            Console.WriteLine("Исходный массив:");
-            ShowArray(array);
-
-            Console.WriteLine();
-            Console.WriteLine("Отсортированный массив:");
-            ShowArray(array,true);
+            var age = 17;
+            Console.WriteLine(age);
+            ChangeAge(age);
+            Console.WriteLine(age);
         }
     }
 	
