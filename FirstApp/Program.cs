@@ -78,7 +78,6 @@ namespace FirstApp
 
             return array;
         }
-
         static int[] SortArrayDesc(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
@@ -97,7 +96,6 @@ namespace FirstApp
 
             return array;
         }
-
         static void SortArray(int[] array, out int[] sorteddesc, out int[] sortedasc)
         {
             sorteddesc = SortArrayDesc(array);
@@ -121,36 +119,50 @@ namespace FirstApp
         static void ShowArray(int[] numbers, bool isNeedSort = false)
         {
             var resultedarray = numbers;
-            if (isNeedSort) resultedarray = SortArray(numbers);
+           // if (isNeedSort) resultedarray = SortArray(numbers);
 
             foreach (var item in resultedarray)
             {
                 Console.Write(item + " ");
             }
         }
-
         static void ChangeAge(in float age)
         {
             Console.WriteLine("Введите возраст");
           //  age =Int32.Parse(Console.ReadLine());
         }
-
         static void BigDataOperation(in int[] arr)
         {
             arr[0] = 4;
         }
-
         static void SumNumbers(ref int num1, in int num2, out int num3, int num4)
         {
             num3 = num1 + num2;
             num3 = num3 * num4;
         }
+        static void Echo(string phrase, int deep)
+        {
+            Console.WriteLine(phrase);
+
+            if (deep > 1)
+            {
+                Echo(phrase, deep - 1);
+            }
+        }
 
         static void Main(string[] args)
 		{
-            
+            Console.WriteLine("Напишите что-то");
+            var str = Console.ReadLine();
+
+            Console.WriteLine("Укажите глубину эха");
+            var deep = int.Parse(Console.ReadLine());
+
+            Echo(str, deep);
+
+            Console.ReadKey();
+       
         }
     }
-	
 }
 
