@@ -106,19 +106,14 @@ namespace FirstApp
         
         static void Main(string[] args)
 		{
-            //int[] array;
             var array = GetArrayFromConsole(10);
 
             Console.WriteLine("Исходный массив:");
-            foreach (var item in array)
-            {
-                Console.Write(item + " ");
-            }
+            ShowArray(array);
 
             Console.WriteLine();
             Console.WriteLine("Отсортированный массив:");
             ShowArray(array,true);
-
         }
     }
 	
