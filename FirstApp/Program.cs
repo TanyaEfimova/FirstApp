@@ -104,7 +104,7 @@ namespace FirstApp
             }
         }
 
-        static void ChangeAge(float age)
+        static void ChangeAge(ref float age)
         {
             Console.WriteLine("Введите возраст");
             age =Int32.Parse(Console.ReadLine());
@@ -112,9 +112,9 @@ namespace FirstApp
 
         static void Main(string[] args)
 		{
-            var age = 17;
+            var age = 17f;
             Console.WriteLine(age);
-            ChangeAge(age);
+            ChangeAge(ref age);
             Console.WriteLine(age);
         }
     }
