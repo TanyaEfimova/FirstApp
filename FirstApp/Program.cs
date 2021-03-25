@@ -40,7 +40,7 @@ namespace FirstApp
             }
             return color;
         }
-        static void ShowColors(string[] favcolors)
+        static void ShowColors(params string[] favcolors)
         {
             Console.WriteLine("Ваши любимые цвета:");
             foreach (var color in favcolors)
