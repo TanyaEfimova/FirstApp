@@ -107,7 +107,7 @@ namespace FirstApp
         static void Main(string[] args)
 		{
             //int[] array;
-            var array = GetArrayFromConsole();
+            var array = GetArrayFromConsole(10);
 
             Console.WriteLine("Исходный массив:");
             foreach (var item in array)
@@ -116,17 +116,8 @@ namespace FirstApp
             }
 
             Console.WriteLine();
-            var sortedarray = SortArray(array);
-
             Console.WriteLine("Отсортированный массив:");
-            foreach (var item in sortedarray)
-            {
-                Console.Write(item + " ");
-            }
-
-            int[,] arr = {{ - 5, 6, 9, 1, 2, -3},{ - 8, 8, 1, 1, 2, -3}};
-
-            SortComplexArray(arr);
+            ShowArray(array,true);
 
         }
     }
