@@ -4,7 +4,7 @@ namespace FirstApp
 {
     class Program
     {
-        static string ShowColor()
+        static string ShowColor(string username)
         {
             Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
             var color = Console.ReadLine();
@@ -54,25 +54,27 @@ namespace FirstApp
         }
         static void Main(string[] args)
 		{
-            int temp;
-            int[] arr = GetArrayFromConsole();
+            (string name, int age) anketa;
 
-            for (int i = 0; i < arr.Length; i++)
+            Console.Write("Введите имя: ");
+            anketa.name = Console.ReadLine();
+            Console.Write("Введите возраст с цифрами: ");
+            anketa.age = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Ваше имя: {0}", anketa.name);
+            Console.WriteLine("Ваш возраст: {0}", anketa.age);
+
+            var favcolors = new string[3];
+
+            for (int i = 0; i < favcolors.Length; i++)
             {
-                for (int j = i + 1; j < arr.Length; j++)
-                {
-                    if (arr[i] > arr[j])
-                    {
-                        temp = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = temp;
-                    }
-                }
+                favcolors[i] = ShowColor(anketa.name);
             }
 
-            foreach (var item in arr)
+            Console.WriteLine("Ваши любимые цвета:");
+            foreach (var color in favcolors)
             {
-                Console.Write(item +" ");
+                Console.WriteLine(color);
             }
         }
 	}
