@@ -93,6 +93,16 @@ namespace FirstApp
                         }
             }
         }
+        static void ShowArray(int[] numbers, bool isNeedSort = false)
+        {
+            var resultedarray = numbers;
+            if (isNeedSort) resultedarray = SortArray(numbers);
+
+            foreach (var item in resultedarray)
+            {
+                Console.Write(item + " ");
+            }
+        }
         
         static void Main(string[] args)
 		{
