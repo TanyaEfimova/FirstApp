@@ -60,7 +60,7 @@ namespace FirstApp
 
             return result;
         }
-        static int[] SortArray(int[] array)
+        static int[] SortArrayAsc(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -77,6 +77,31 @@ namespace FirstApp
             }
 
             return array;
+        }
+
+        static int[] SortArrayDesc(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = i + 1; j < array.Length; j++)
+                {
+
+                    if (array[i] < array[j])
+                    {
+                        int temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            }
+
+            return array;
+        }
+
+        static void SortArray(int[] array, out int[] sorteddesc, out int[] sortedasc)
+        {
+            sorteddesc = SortArrayDesc(array);
+            sortedasc = SortArrayAsc(array);
         }
         static void SortComplexArray(int[,] arr)
         {
@@ -104,18 +129,26 @@ namespace FirstApp
             }
         }
 
-        static void ChangeAge(ref float age)
+        static void ChangeAge(in float age)
         {
             Console.WriteLine("Введите возраст");
-            age =Int32.Parse(Console.ReadLine());
+          //  age =Int32.Parse(Console.ReadLine());
+        }
+
+        static void BigDataOperation(in int[] arr)
+        {
+            arr[0] = 4;
+        }
+
+        static void SumNumbers(ref int num1, in int num2, out int num3, int num4)
+        {
+            num3 = num1 + num2;
+            num3 = num3 * num4;
         }
 
         static void Main(string[] args)
 		{
-            var age = 17f;
-            Console.WriteLine(age);
-            ChangeAge(ref age);
-            Console.WriteLine(age);
+            
         }
     }
 	
