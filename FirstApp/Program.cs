@@ -48,9 +48,9 @@ namespace FirstApp
                 Console.WriteLine(color);
             }
         }
-        static int[] GetArrayFromConsole()
+        static int[] GetArrayFromConsole(int num = 5)
         {
-            var result = new int[5];
+            var result = new int[num];
 
             for (int i = 0; i < result.Length; i++)
             {
@@ -96,20 +96,20 @@ namespace FirstApp
         
         static void Main(string[] args)
 		{
-            int[] numbers = new int[5];
-            numbers = GetArrayFromConsole();
+            //int[] array;
+            var array = GetArrayFromConsole();
 
             Console.WriteLine("Исходный массив:");
-            foreach (var item in numbers)
+            foreach (var item in array)
             {
                 Console.Write(item + " ");
             }
 
             Console.WriteLine();
-            numbers = SortArray(numbers);
+            var sortedarray = SortArray(array);
 
             Console.WriteLine("Отсортированный массив:");
-            foreach (var item in numbers)
+            foreach (var item in sortedarray)
             {
                 Console.Write(item + " ");
             }
@@ -120,7 +120,6 @@ namespace FirstApp
 
         }
     }
-	}
-    
+	
 }
 
