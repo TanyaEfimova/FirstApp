@@ -6,7 +6,7 @@ namespace FirstApp
     {
         static string ShowColor(string username)
         {
-            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+            Console.WriteLine("{0}, напишите свой любимый цвет на английском с маленькой буквы",username);
             var color = Console.ReadLine();
 
             switch (color)
