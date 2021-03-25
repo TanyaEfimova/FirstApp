@@ -60,26 +60,43 @@ namespace FirstApp
 
             return result;
         }
-        static void Main(string[] args)
-		{
-            (string name, int age) anketa;
-
-            Console.Write("Введите имя: ");
-            anketa.name = Console.ReadLine();
-            Console.Write("Введите возраст с цифрами: ");
-            anketa.age = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Ваше имя: {0}", anketa.name);
-            Console.WriteLine("Ваш возраст: {0}", anketa.age);
-
-            var favcolors = new string[3];
-
-            for (int i = 0; i < favcolors.Length; i++)
+        static int[] SortArray(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
             {
-                favcolors[i] = ShowColor(anketa.name,anketa.age);
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    
+                    if (array[i] > array[j])
+                    {
+                        int temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                }
             }
 
-            ShowColors(favcolors);
+            return array;
+        }
+        static void Main(string[] args)
+		{
+            int[] numbers = new int[5];
+            numbers = GetArrayFromConsole();
+
+            Console.WriteLine("Исходный массив:");
+            foreach (var item in numbers)
+            {
+                Console.Write(item + " ");
+            }
+
+            Console.WriteLine();
+            numbers = SortArray(numbers);
+
+            Console.WriteLine("Отсортированный массив:");
+            foreach (var item in numbers)
+            {
+                Console.Write(item + " ");
+            }
         }
 	}
     
