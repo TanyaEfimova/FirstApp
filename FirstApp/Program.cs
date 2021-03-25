@@ -40,7 +40,14 @@ namespace FirstApp
             }
             return color;
         }
-
+        static void ShowColors(string[] favcolors)
+        {
+            Console.WriteLine("Ваши любимые цвета:");
+            foreach (var color in favcolors)
+            {
+                Console.WriteLine(color);
+            }
+        }
         static int[] GetArrayFromConsole()
         {
             var result = new int[5];
@@ -72,11 +79,7 @@ namespace FirstApp
                 favcolors[i] = ShowColor(anketa.name,anketa.age);
             }
 
-            Console.WriteLine("Ваши любимые цвета:");
-            foreach (var color in favcolors)
-            {
-                Console.WriteLine(color);
-            }
+            ShowColors(favcolors);
         }
 	}
     
