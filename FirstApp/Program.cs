@@ -10,8 +10,10 @@ namespace FirstApp
             Human human = new Human();
             human.Greetings();
 
-            human.name = "Дмитрий";
-            human.age = 23;
+            human = new Human("Дмитрий");
+            human.Greetings();
+
+            human = new Human("Дмитрий", 23);
             human.Greetings();
 
             Console.ReadKey();
