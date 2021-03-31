@@ -2,26 +2,57 @@
 {
     class Car
     {
-		public double Fuel;
+        private double Fuel;
 
-		public int Mileage;
+        private int Mileage;
 
-		public Car()
-		{
-			Fuel = 50;
-			Mileage = 0;
-		}
+        private string color;
 
-		public void Move()
-		{
-			// Move a kilometer
-			Mileage++;
-			Fuel -= 0.5;
-		}
+        private TurnDirection turn;
 
-		public void FillTheCar()
-		{
-			Fuel = 50;
-		}
-	}
+        public Car()
+        {
+            Fuel = 50;
+            Mileage = 0;
+            color = "White";
+        }
+
+        private void Move()
+        {
+            // Move a kilometer
+            Mileage++;
+            Fuel -= 0.5;
+        }
+
+        public void FillTheCar()
+        {
+            Fuel = 50;
+        }
+
+        private void Turn(TurnDirection direction)
+        {
+            turn = direction;
+        }
+
+        public string GetColor()
+        {
+            return color;
+        }
+
+        public void ChangeColor(string newColor)
+        {
+            if (color != newColor)
+                color = newColor;
+        }
+
+        public bool IsTurningLeft()
+        {
+            return turn == TurnDirection.Left;
+        }
+
+        public bool IsTurningRight()
+        {
+            return turn == TurnDirection.Right;
+        }
+    }
 }
