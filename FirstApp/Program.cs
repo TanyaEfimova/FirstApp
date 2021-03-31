@@ -7,25 +7,17 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Data data = new Data { Name = "Запись", Length = 10, Version = 1, Array = new int[] { 15, 30 } };
-            Obj obj = new Obj { Name = "Стол", IsAlive = false, Weight = 15 };
+            var department = GetCurrentDepartment();
 
-            var dataCopy = data;
-            var objCopy = obj;
-
-            data.Name = "Значение";
-            data.Length = 35;
-            data.Version = 2;
-            data.Array[0] = 0;
-
-            //если закомментируем, то будет 2 ссылки на один и тот же объект
-            objCopy = new Obj { Name = obj.Name, IsAlive = obj.IsAlive, Weight = obj.Weight };
-
-            obj.Name = "Кот";
-            obj.IsAlive = true;
-            obj.Weight = 3;
-
-            Console.ReadKey();
+            if (department?.Company?.Type == "Банк" && department?.City?.Name == "Санкт-Петербург")
+            {
+                Console.WriteLine("У банка {0} есть отделение в Санкт-Петербурге", department?.Company?.Name ?? "Неизвестная компания");
+            }
+        }
+        static Department GetCurrentDepartment()
+        {
+            Department dep = new Department { Company = new Company { Type = "Банк", Name = "Уралсиб" }, City = new City { Name = "Санкт-Петербург" } };
+            return dep;
         }
     }
 }
