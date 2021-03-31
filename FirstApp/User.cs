@@ -1,4 +1,6 @@
-﻿namespace FirstApp
+﻿using System;
+
+namespace FirstApp
 {
     class User
     {
@@ -13,7 +15,14 @@
 
             set
             {
-                age = value;
+                if (value < 18)
+                {
+                    Console.WriteLine("Возраст должен быть не меньше 18");
+                }
+                else
+                {
+                    age = value;
+                }
             }
         }
     }
