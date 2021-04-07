@@ -1,10 +1,12 @@
-﻿namespace FirstApp
+﻿using System;
+
+namespace FirstApp
 {
     class Car
     {
         private double Fuel;
 
-        private int Mileage;
+        public int Mileage;
 
         private string color;
 
@@ -17,11 +19,12 @@
             color = "White";
         }
 
-        private void Move()
+        public virtual void Move()
         {
             // Move a kilometer
             Mileage++;
             Fuel -= 0.5;
+            Console.WriteLine("Вызван метод Move класса Car");
         }
 
         public void FillTheCar()
