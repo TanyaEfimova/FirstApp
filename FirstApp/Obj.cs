@@ -4,20 +4,17 @@ namespace FirstApp
 {
     class Obj
     {
-        public string name;
-        public bool isAlive;
-        public int weight;
+        private string name;
+        private string owner;
+        private int length;
+        private int count;
 
-        public Obj()
-        {
-            Console.WriteLine("Вызван конструктор без параметров");
-            isAlive = true;
-        }
-
-        public Obj(string name, int weight) : this()
+        public Obj(string name, string ownerName, int objLength, int count)
         {
             this.name = name;
-            this.weight = weight;
+            owner = ownerName;
+            length = objLength;
+            this.count = count;
         }
     }
 }
