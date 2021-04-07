@@ -2,13 +2,11 @@
 {
     class BaseClass
     {
-        public string Name;
-        protected string Description;
-        private int value;
+        protected string Name;
 
-        public BaseClass(int value)
+        public BaseClass(string name)
         {
-            this.value = value;
+            Name = name;
         }
     }
 }
