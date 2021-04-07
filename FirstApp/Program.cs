@@ -6,13 +6,10 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            User user = new User();
+            SmartHelper helper = new SmartHelper("Олег");
+            helper.Greetings("Грег");
 
-            // Setter
-            user.Age = 23;
-
-            // Getter
-            Console.WriteLine(user.Age);
+            Console.ReadKey();
 
         }
 
