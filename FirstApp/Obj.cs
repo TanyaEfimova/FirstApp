@@ -1,13 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FirstApp
 {
     class Obj
     {
-        public string Name;
-        public bool IsAlive;
-        public int Weight;
+        public string name;
+        public bool isAlive;
+        public int weight;
+
+        public Obj()
+        {
+            Console.WriteLine("Вызван конструктор без параметров");
+            isAlive = true;
+        }
+
+        public Obj(string name, int weight) : this()
+        {
+            this.name = name;
+            this.weight = weight;
+        }
     }
 }
