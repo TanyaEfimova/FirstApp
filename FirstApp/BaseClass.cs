@@ -1,4 +1,6 @@
-﻿namespace FirstApp
+﻿using System;
+
+namespace FirstApp
 {
     class BaseClass
     {
@@ -7,6 +9,11 @@
         public BaseClass(string name)
         {
             Name = name;
+        }
+
+        public virtual void Display()
+        {
+            Console.WriteLine("Метод класса BaseClass");
         }
     }
 }
