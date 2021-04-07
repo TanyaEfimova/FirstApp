@@ -5,8 +5,25 @@ namespace FirstApp
     class DerivedClass : BaseClass
     {
         public string Description;
-
-        public int Counter;
+        private int counter;
+        public override int Counter
+        {
+            get
+            {
+                return counter;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    Console.WriteLine("Значение не должно быть отрицательным!");
+                }
+                else
+                {
+                    counter = value;
+                }
+            }
+        }
 
         public DerivedClass(string name, string description) : base(name)
         {

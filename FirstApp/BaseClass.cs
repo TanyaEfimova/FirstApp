@@ -6,6 +6,12 @@ namespace FirstApp
     {
         protected string Name;
 
+        public virtual int Counter
+        {
+            get;
+            set;
+        }
+
         public BaseClass(string name)
         {
             Name = name;
