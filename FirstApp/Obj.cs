@@ -10,10 +10,11 @@ namespace FirstApp
         private int count;
         public int Value;
 
-        public Obj(int val)
+        public Obj()
         {
-            Value = val;
+            Value = 0;
         }
+        
         public Obj(string name, string ownerName, int objLength, int count)
         {
             this.name = name;
