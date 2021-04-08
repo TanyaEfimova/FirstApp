@@ -2,11 +2,11 @@
 
 namespace FirstApp
 {
-    class Car<T1> where T1 : Engine
+    class Car<TEngine> where TEngine : Engine
     {
-        public T1 Engine;
+        public TEngine Engine;
 
-        public virtual void ChangePart<T2>(T2 newPart) where T2 : CarPart
+        public virtual void ChangePart<TPart>(TPart newPart) where TPart : CarPart
         {
         }
     }
