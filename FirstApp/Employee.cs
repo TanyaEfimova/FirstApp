@@ -1,9 +1,13 @@
 ﻿namespace FirstApp
 {
-    class Employee
+    class Employee : Person
     {
-        public string Name;
-        public int Age;
-        public int Salary;
+        // Булевый флаг, сообщающий, находится ли сотрудник на смене
+        public bool IsOnShift;
+
+        public Employee(string name, bool isOnShift) : base(name)
+        {
+            IsOnShift = isOnShift;
+        }
     }
 }

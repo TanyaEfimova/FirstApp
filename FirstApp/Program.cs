@@ -6,25 +6,11 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var array = new Book[]{
-    new Book{
-      Name = "Мастер и Маргарита",
-      Author = "М.А. Булгаков"
-            },
-    new Book{
-      Name = "Отцы и дети",
-      Author = "И.С. Тургенев"
-            },
-                                   };
-            BookCollection collection = new BookCollection(array);
+            Employee employee = new Employee("Николай", true);
+            Guest guest = new Guest("Андрей", new DateTime(2020, 11, 05));
 
-            Book book = collection[1];
-            book = collection[-1];
-            book = collection[4];
-
-            book = collection["Мастер и Маргарита"];
-
-            Console.ReadKey();
+            Person person = employee;
+            person = guest;
         }
 
     }
