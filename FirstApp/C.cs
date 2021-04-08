@@ -2,11 +2,11 @@
 
 namespace FirstApp
 {
-    class C : B
+    class C : A
     {
-        public new void Display()
+        public override void Display()
         {
-            Console.WriteLine("Вызван метод класса C");
+            Console.WriteLine("C");
         }
     }
 }

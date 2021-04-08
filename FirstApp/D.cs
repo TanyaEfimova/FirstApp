@@ -2,11 +2,11 @@
 
 namespace FirstApp
 {
-    class B : A
+    class D : B
     {
         public new void Display()
         {
-            Console.WriteLine("B");
+            Console.WriteLine("D");
         }
     }
 }

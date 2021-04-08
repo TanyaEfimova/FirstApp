@@ -6,7 +6,7 @@ namespace FirstApp
     {
         public virtual void Display()
         {
-            Console.WriteLine("Вызван метод класса A");
+            Console.WriteLine("A");
         }
     }
 }
