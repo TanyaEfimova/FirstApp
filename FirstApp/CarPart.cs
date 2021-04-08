@@ -1,6 +1,6 @@
 ﻿namespace FirstApp
 {
-    class CarPart
+    abstract class CarPart
     {
     }
 }

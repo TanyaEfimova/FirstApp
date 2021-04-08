@@ -1,6 +1,6 @@
 ﻿namespace FirstApp
 {
-    class Engine
+    abstract class Engine
     {
     }
 }
