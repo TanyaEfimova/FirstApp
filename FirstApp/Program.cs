@@ -6,11 +6,10 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Car car = new Car();
+            string str = "Hello";
+            Console.WriteLine(str.GetLastChar());
 
-            Console.WriteLine(Car.MinPrice);
-
-            Console.WriteLine(Car.MaxPrice);
+            Console.WriteLine("Строка".GetLastChar());
 
             Console.ReadKey();
         }
