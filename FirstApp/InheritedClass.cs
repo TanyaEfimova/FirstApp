@@ -1,4 +1,6 @@
-﻿namespace FirstApp
+﻿using System;
+
+namespace FirstApp
 {
     class InheritedClass : BaseClass
     {
@@ -7,6 +9,12 @@
         public InheritedClass(int newValue) : base("100")
         {
             this.newValue = newValue;
+        }
+
+        public override void Display()
+        {
+            base.Display();
+            Console.WriteLine("Метод класса InheritedClass");
         }
     }
 }
