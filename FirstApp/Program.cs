@@ -6,11 +6,13 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Employee employee = new Employee("Николай", true);
-            Guest guest = new Guest("Андрей", new DateTime(2020, 11, 05));
+            int num1 = 3;
+            int num2 = 58;
 
-            Person person = employee;
-            person = guest;
+            Helper.Swap(ref num1, ref num2);
+
+            Console.WriteLine(num1); //58
+            Console.WriteLine(num2); //3
         }
 
     }
