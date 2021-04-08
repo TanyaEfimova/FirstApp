@@ -6,12 +6,8 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Car car = new Car();
-            HybridCar hybridCar = new HybridCar();
-
-            car.Move();         // метод класса Car
-            hybridCar.Move();       // метод класса HybridCar
-            ((Car)hybridCar).Move();// метод класса HybridCar
+            DerivedClass obj = new DerivedClass("Name", "Description");
+            obj.Display();
         }
 
     }
