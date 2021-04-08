@@ -4,11 +4,8 @@ namespace FirstApp
 {
     abstract class Delivery
     {
-        public string Address;
+        public string Address { get; set; }
 
-        public void DisplayAddress()
-        {
-            Console.WriteLine(Address);
-        }
+        public abstract void GetTypeDelivery();
     }
 }
