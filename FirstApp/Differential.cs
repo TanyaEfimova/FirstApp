@@ -1,6 +1,6 @@
 ﻿namespace FirstApp
 {
-    class Differential
+    class Differential : CarPart
     {
     }
 }

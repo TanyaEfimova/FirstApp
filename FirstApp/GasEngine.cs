@@ -1,6 +1,6 @@
 ﻿namespace FirstApp
 {
-    class GasEngine
+    class GasEngine : Engine
     {
     }
 }

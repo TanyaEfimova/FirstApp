@@ -1,6 +1,6 @@
 ﻿namespace FirstApp
 {
-    class Wheel
+    class Wheel : CarPart
     {
     }
 }
