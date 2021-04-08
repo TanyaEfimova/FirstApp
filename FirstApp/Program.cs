@@ -6,13 +6,13 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            int num1 = 3;
-            int num2 = 58;
+            Car car = new Car();
 
-            Helper.Swap(ref num1, ref num2);
+            Console.WriteLine(Car.MinPrice);
 
-            Console.WriteLine(num1); //58
-            Console.WriteLine(num2); //3
+            Console.WriteLine(Car.MaxPrice);
+
+            Console.ReadKey();
         }
 
     }

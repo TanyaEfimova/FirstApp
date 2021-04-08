@@ -12,6 +12,15 @@ namespace FirstApp
 
         private TurnDirection turn;
 
+        public static int MinPrice = 100_000;
+        public static int MaxPrice;
+
+        static Car()
+        {
+            Console.WriteLine("Вызван статический конструктор класса Car");
+            MaxPrice = 1_000_000;
+        }
+
         public Car()
         {
             Fuel = 50;
