@@ -4,6 +4,7 @@ namespace FirstApp
 {
     class Car
     {
+
         private double Fuel;
 
         public int Mileage;
