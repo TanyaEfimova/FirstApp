@@ -1,12 +1,14 @@
 ﻿namespace FirstApp
 {
-    class DiskInfo
+    class Drive
     {
         public string Name { get; }
         public long Volume { get; }
         public long FreeVolume { get; }
 
-        public DiskInfo(string name, long vol, long free)
+        public Drive() { }
+
+        public Drive(string name, long vol, long free)
         {
             Name = name;
             Volume = vol;
