@@ -39,6 +39,12 @@ namespace FirstApp
             #endregion
 
             GetCountCatalogs();
+
+            //Получение информации о каталоге: 
+            Console.WriteLine($"Название каталога: {dirInfo.Name}");
+            Console.WriteLine($"Полное название каталога: {dirInfo.FullName}");
+            Console.WriteLine($"Время создания каталога: {dirInfo.CreationTime}");
+            Console.WriteLine($"Корневой каталог: {dirInfo.Root}");
         }
         Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
 
