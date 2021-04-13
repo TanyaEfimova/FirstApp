@@ -27,6 +27,16 @@ namespace FirstApp
             Console.WriteLine();
 
             GetCatalogs(); //   Вызов метода получения директорий
+
+            #region Создание новой директории в каталоге текущего пользователя:
+
+            DirectoryInfo dirInfo = new DirectoryInfo(@"/Users/admin");
+
+            if (!dirInfo.Exists)
+                dirInfo.Create();
+
+            dirInfo.CreateSubdirectory("NewFolder");
+            #endregion
         }
         Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
 
