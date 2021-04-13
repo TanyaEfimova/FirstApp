@@ -37,6 +37,8 @@ namespace FirstApp
 
             dirInfo.CreateSubdirectory("NewFolder");
             #endregion
+
+            GetCountCatalogs();
         }
         Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
 
@@ -75,6 +77,12 @@ namespace FirstApp
                 {
                     Console.WriteLine(dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
                 }
+
+                DirectoryInfo newDirectory = new DirectoryInfo(@"/NewFolder");
+                if (!newDirectory.Exists)
+                    newDirectory.Create();
+
+                Console.WriteLine(dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
             }
             catch (Exception e)
             {
