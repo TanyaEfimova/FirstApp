@@ -95,6 +95,20 @@ namespace FirstApp
                 Console.WriteLine(e.Message);
             }
         }
+
+        static void DeleteCatalog()
+        {
+            try
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(@"/Users/admin/NewFolder");
+                dirInfo.Delete(true); // Удаление со всем содержимым
+                Console.WriteLine("Каталог удален");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
 
