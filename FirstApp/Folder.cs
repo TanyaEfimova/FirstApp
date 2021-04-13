@@ -5,14 +5,18 @@ namespace FirstApp
 {
     class Folder
     {
+        public string Name { get; set; }
+
+        public Folder(string name)
+        {
+            Name = name;
+        }
         public List<string> Files { get; set; } = new List<string>();
 
-        Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
-
-        public void FolderAdd(string FolderName)
+        public void AddFile(string name)
         {
-            Folders.Add(FolderName, new Folder());
-            Console.WriteLine("Папка создана.");
+            if (!Files.Contains(name))
+                Files.Add(name);
         }
     }
 }

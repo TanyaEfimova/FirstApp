@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FirstApp
 {
@@ -6,28 +7,16 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            HomeDelivery homeDelivery = new HomeDelivery();
-
-            var array = new Product[]
-  {
-    new Product
-    {
-      Artikul="AS009",
-      Name="Pen",
-      Description="Subject for writing"
-    },
-    new Product
-    {
-      Artikul="AYU1356",
-      Name="Book",
-      Description="Subject for reading"
-    },
-  };
-            ProductSet collection = new ProductSet(array);
-
-            Order<HomeDelivery, DaysOfWeek> order1 = new Order<HomeDelivery, DaysOfWeek>(homeDelivery, collection);
+            Folder folder = new Folder("НоваяПапка");
+            folder.AddFile("Документ1");
         }
+        Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
 
+        public void FolderAdd(string FolderName)
+        {
+            Folders.Add(FolderName, new Folder(FolderName));
+            Console.WriteLine("Папка создана.");
+        }
     }
 }
 
