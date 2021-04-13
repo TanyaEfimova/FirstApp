@@ -14,5 +14,12 @@
             Volume = vol;
             FreeVolume = free;
         }
+
+        enum DriveType
+        {
+            USB,
+            HDD,
+            CD
+        }
     }
 }
