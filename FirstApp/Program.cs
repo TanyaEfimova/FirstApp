@@ -7,90 +7,56 @@ namespace FirstApp
 {
     class Program
     {
+        const string SettingsFileName = "Settings.cfg";
         static void Main(string[] args)
         {
-            string filePath = @"/Users/admin/Students.txt"; // Укажем путь 
-            if (!File.Exists(filePath)) // Проверим, существует ли файл по данному пути
+            // Пишем
+            WriteValues();
+            // Считываем
+            ReadValues();
+        }
+
+        Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
+        static void WriteValues()
+        {
+            // Создаем объект BinaryWriter и указываем, куда будет направлен поток данных
+            using (BinaryWriter writer = new BinaryWriter(File.Open(SettingsFileName, FileMode.Create)))
             {
-                //   Если не существует - создаём и записываем в строку
-                using (StreamWriter sw = File.CreateText(filePath))  // Конструкция Using (будет рассмотрена в последующих юнитах)
-                {
-                    sw.WriteLine("Олег");
-                    sw.WriteLine("Дмитрий");
-                    sw.WriteLine("Иван");
-                }
-            }
-            // Откроем файл и прочитаем его содержимое
-            using (StreamReader sr = File.OpenText(filePath))
-            {
-                string str = "";
-                while ((str = sr.ReadLine()) != null) // Пока не кончатся строки - считываем из файла по одной и выводим в консоль
-                {
-                    Console.WriteLine(str);
-                }
-            }
-
-            filePath = @"/Users/admin/source/repos/FirstApp/FirstApp/Program.cs"; // Укажем путь
-
-            var flInfo = new FileInfo(filePath);
-
-            using (StreamWriter sw = flInfo.AppendText())
-            {
-                sw.WriteLine($"// Время запуска: {DateTime.Now}");
-            }
-
-            // Откроем файл и прочитаем его содержимое
-            using (StreamReader sr = File.OpenText(filePath))
-            {
-                string str = "";
-                while ((str = sr.ReadLine()) != null)
-                    Console.WriteLine(str);
-            }
-
-            string tempFile = Path.GetTempFileName(); // используем генерацию имени файла.
-            var fileInfo = new FileInfo(tempFile); // Создаем объект класса FileInfo.
-
-            //Создаем файл и записываем в него.
-            using (StreamWriter sw = fileInfo.CreateText())
-            {
-                sw.WriteLine("Игорь");
-                sw.WriteLine("Андрей");
-                sw.WriteLine("Сергей");
-            }
-
-            //Открываем файл и читаем из него.
-            using (StreamReader sr = fileInfo.OpenText())
-            {
-                string str = "";
-                while ((str = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(str);
-                }
-            }
-
-            try
-            {
-                string tempFile2 = Path.GetTempFileName();
-                var fileInfo2 = new FileInfo(tempFile2);
-
-                // Убедимся, что файл назначения точно отсутствует
-                fileInfo2.Delete();
-
-                // Копируем информацию
-                fileInfo.CopyTo(tempFile2);
-                Console.WriteLine($"{tempFile} скопирован в файл {tempFile2}.");
-
-                //Удаляем ранее созданный файл.
-                fileInfo.Delete();
-                Console.WriteLine($"{tempFile} удален.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Ошибка: {e}");
+                // записываем данные в разном формате
+                writer.Write(20.666F);
+                writer.Write(@"Тестовая строка");
+                writer.Write(55);
+                writer.Write(false);
             }
         }
-        Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
 
+        static void ReadValues()
+        {
+            float FloatValue;
+            string StringValue;
+            int IntValue;
+            bool BooleanValue;
+
+            if (File.Exists(SettingsFileName))
+            {
+                // Создаем объект BinaryReader и инициализируем его возвратом метода File.Open.
+                using (BinaryReader reader = new BinaryReader(File.Open(SettingsFileName, FileMode.Open)))
+                {
+                    // Применяем специализированные методы Read для считывания соответствующего типа данных.
+                    FloatValue = reader.ReadSingle();
+                    StringValue = reader.ReadString();
+                    IntValue = reader.ReadInt32();
+                    BooleanValue = reader.ReadBoolean();
+                }
+
+                Console.WriteLine("Из файла считано:");
+
+                Console.WriteLine("Дробь: " + FloatValue);
+                Console.WriteLine("Строка: " + StringValue);
+                Console.WriteLine("Целое: " + IntValue);
+                Console.WriteLine("Булево значение " + BooleanValue);
+            }
+        }
         public static void WriteDriveInfo(DriveInfo di)
         {
             Console.WriteLine($"Название: {di.Name}");
