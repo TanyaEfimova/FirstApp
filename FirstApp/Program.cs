@@ -32,6 +32,13 @@ namespace FirstApp
 
             filePath = @"/Users/admin/source/repos/FirstApp/FirstApp/Program.cs"; // Укажем путь
 
+            var flInfo = new FileInfo(filePath);
+
+            using (StreamWriter sw = flInfo.AppendText())
+            {
+                sw.WriteLine($"// Время запуска: {DateTime.Now}");
+            }
+
             // Откроем файл и прочитаем его содержимое
             using (StreamReader sr = File.OpenText(filePath))
             {
@@ -190,4 +197,3 @@ namespace FirstApp
         }
     }
 }
-
