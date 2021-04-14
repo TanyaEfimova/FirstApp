@@ -11,22 +11,22 @@ namespace FirstApp
         static void Main(string[] args)
         {
             // объект для сериализации
-            var person = new Pet("Rex", 2);
+            var person = new Contact("Rex", 2345678, "email@email.ru");
             Console.WriteLine("Объект создан");
 
             BinaryFormatter formatter = new BinaryFormatter();
             // получаем поток, куда будем записывать сериализованный объект
-            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
+            using (var fs = new FileStream("myContacts.dat", FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, person);
                 Console.WriteLine("Объект сериализован");
             }
             // десериализация
-            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
+            using (var fs = new FileStream("myContacts.dat", FileMode.OpenOrCreate))
             {
-                var newPet = (Pet)formatter.Deserialize(fs);
+                var newPerson = (Contact)formatter.Deserialize(fs);
                 Console.WriteLine("Объект десериализован");
-                Console.WriteLine($"Имя: {newPet.Name} --- Возраст: {newPet.Age}");
+                Console.WriteLine($"Имя: {newPerson.Name} --- Телефон: {newPerson.PhoneNumber} ---- Эл.почта: {newPerson.Email}");
             }
             Console.ReadLine();
         }
