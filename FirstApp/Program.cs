@@ -11,7 +11,7 @@ namespace FirstApp
         static void Main(string[] args)
         {
             // Пишем
-            //WriteValues();
+            WriteValues();
             // Считываем
             ReadValues();
         }
@@ -20,13 +20,10 @@ namespace FirstApp
         static void WriteValues()
         {
             // Создаем объект BinaryWriter и указываем, куда будет направлен поток данных
-            using (BinaryWriter writer = new BinaryWriter(File.Open(SettingsFileName, FileMode.Create)))
+            using (BinaryWriter writer = new BinaryWriter(File.Open(SettingsFileName, FileMode.Open)))
             {
-                // записываем данные в разном формате
-                writer.Write(20.666F);
-                writer.Write(@"Тестовая строка");
-                writer.Write(55);
-                writer.Write(false);
+                // записываем данные
+                writer.Write($"Файл изменен {DateTime.Now} на компьютере с ОС {Environment.OSVersion}");
             }
         }
 
@@ -43,16 +40,16 @@ namespace FirstApp
                 using (BinaryReader reader = new BinaryReader(File.Open(SettingsFileName, FileMode.Open)))
                 {
                     // Применяем специализированные методы Read для считывания соответствующего типа данных.
-                   // FloatValue = reader.ReadSingle();
+                    // FloatValue = reader.ReadSingle();
                     StringValue = reader.ReadString();
-                   // IntValue = reader.ReadInt32();
-                   // BooleanValue = reader.ReadBoolean();
+                    // IntValue = reader.ReadInt32();
+                    // BooleanValue = reader.ReadBoolean();
                 }
 
                 Console.WriteLine("Из файла считано:");
 
-               // Console.WriteLine("Дробь: " + FloatValue);
-                Console.WriteLine("Строка: " + StringValue);
+                // Console.WriteLine("Дробь: " + FloatValue);
+                Console.WriteLine(StringValue);
                 //Console.WriteLine("Целое: " + IntValue);
                 //Console.WriteLine("Булево значение " + BooleanValue);
             }
