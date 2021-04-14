@@ -7,11 +7,11 @@ namespace FirstApp
 {
     class Program
     {
-        const string SettingsFileName = "Settings.cfg";
+        const string SettingsFileName = @"/Users/admin/Desktop/BinaryFile.bin";
         static void Main(string[] args)
         {
             // Пишем
-            WriteValues();
+            //WriteValues();
             // Считываем
             ReadValues();
         }
@@ -43,18 +43,18 @@ namespace FirstApp
                 using (BinaryReader reader = new BinaryReader(File.Open(SettingsFileName, FileMode.Open)))
                 {
                     // Применяем специализированные методы Read для считывания соответствующего типа данных.
-                    FloatValue = reader.ReadSingle();
+                   // FloatValue = reader.ReadSingle();
                     StringValue = reader.ReadString();
-                    IntValue = reader.ReadInt32();
-                    BooleanValue = reader.ReadBoolean();
+                   // IntValue = reader.ReadInt32();
+                   // BooleanValue = reader.ReadBoolean();
                 }
 
                 Console.WriteLine("Из файла считано:");
 
-                Console.WriteLine("Дробь: " + FloatValue);
+               // Console.WriteLine("Дробь: " + FloatValue);
                 Console.WriteLine("Строка: " + StringValue);
-                Console.WriteLine("Целое: " + IntValue);
-                Console.WriteLine("Булево значение " + BooleanValue);
+                //Console.WriteLine("Целое: " + IntValue);
+                //Console.WriteLine("Булево значение " + BooleanValue);
             }
         }
         public static void WriteDriveInfo(DriveInfo di)
