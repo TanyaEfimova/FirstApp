@@ -104,6 +104,18 @@ namespace FirstApp
 
             if (directInfo.Exists && !Directory.Exists("/Users/admin/Doctor Web New")) ;
             directInfo.MoveTo(newPath);
+
+            try
+            {
+                DirectoryInfo drInfo = new DirectoryInfo(@"/Users/admin/Desktop/testFolder");
+                string trashPath = "c:/$Recycle.Bin/testFolder";
+
+                drInfo.MoveTo(trashPath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         static void DeleteCatalog(string path)
