@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace FirstApp
 {
@@ -13,16 +14,13 @@ namespace FirstApp
 
             Console.WriteLine("Диски:");
             // Пробежимся по дискам и выведем их свойства
-            foreach (DriveInfo drive in drives)
+            foreach (DriveInfo drive in drives.Where(d => d.DriveType == DriveType.Fixed))
             {
-                Console.WriteLine($"Название: {drive.Name}");
-                Console.WriteLine($"Тип: {drive.DriveType}");
-                if (drive.IsReady)
-                {
-                    Console.WriteLine($"Объем: {drive.TotalSize}");
-                    Console.WriteLine($"Свободно: {drive.TotalFreeSpace}");
-                    Console.WriteLine($"Метка: {drive.VolumeLabel}");
-                }
+                WriteDriveInfo(drive);
+                DirectoryInfo root = drive.RootDirectory;
+                var folders = root.GetDirectories();
+
+                Console.WriteLine();
             }
             Console.WriteLine();
 
@@ -47,6 +45,27 @@ namespace FirstApp
             Console.WriteLine($"Корневой каталог: {dirInfo.Root}");
         }
         Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
+
+        public static void WriteDriveInfo(DriveInfo di)
+        {
+            Console.WriteLine($"Название: {di.Name}");
+            Console.WriteLine($"Тип: {di.DriveType}");
+            if (di.IsReady)
+            {
+                Console.WriteLine($"Объем: {di.TotalSize}");
+                Console.WriteLine($"Свободно: {di.TotalFreeSpace}");
+                Console.WriteLine($"Метка: {di.VolumeLabel}");
+            }
+        }
+
+        public static void WriteFolderInfo(DirectoryInfo[] folders)
+        {
+            Console.WriteLine("Папки:");
+            foreach (var folder in folders)
+            {
+                Console.WriteLine(folder.Name);
+            }
+        }
 
         public void FolderAdd(string FolderName)
         {
