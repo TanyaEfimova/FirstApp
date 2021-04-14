@@ -97,6 +97,13 @@ namespace FirstApp
 
             DeleteCatalog(@"/Users/admin/NewFolder");
             DeleteCatalog(@"/NewFolder");
+
+            //Перемещение каталога:
+            DirectoryInfo directInfo = new DirectoryInfo("/Users/admin/Doctor Web");
+            string newPath = "/Users/admin/Doctor Web New";
+
+            if (directInfo.Exists && !Directory.Exists("/Users/admin/Doctor Web New")) ;
+            directInfo.MoveTo(newPath);
         }
 
         static void DeleteCatalog(string path)
