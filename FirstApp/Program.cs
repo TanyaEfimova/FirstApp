@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace FirstApp
 {
@@ -10,10 +10,25 @@ namespace FirstApp
         const string SettingsFileName = @"/Users/admin/Desktop/BinaryFile.bin";
         static void Main(string[] args)
         {
-            // Пишем
-            WriteValues();
-            // Считываем
-            ReadValues();
+            // объект для сериализации
+            var person = new Pet("Rex", 2);
+            Console.WriteLine("Объект создан");
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            // получаем поток, куда будем записывать сериализованный объект
+            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, person);
+                Console.WriteLine("Объект сериализован");
+            }
+            // десериализация
+            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
+            {
+                var newPet = (Pet)formatter.Deserialize(fs);
+                Console.WriteLine("Объект десериализован");
+                Console.WriteLine($"Имя: {newPet.Name} --- Возраст: {newPet.Age}");
+            }
+            Console.ReadLine();
         }
 
         Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
