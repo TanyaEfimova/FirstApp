@@ -9,40 +9,26 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            // получим системные диски
-            DriveInfo[] drives = DriveInfo.GetDrives();
-
-            Console.WriteLine("Диски:");
-            // Пробежимся по дискам и выведем их свойства
-            foreach (DriveInfo drive in drives.Where(d => d.DriveType == DriveType.Fixed))
+            string filePath = @"/Users/admin/Students.txt"; // Укажем путь 
+            if (!File.Exists(filePath)) // Проверим, существует ли файл по данному пути
             {
-                WriteDriveInfo(drive);
-                DirectoryInfo root = drive.RootDirectory;
-                var folders = root.GetDirectories();
-
-                Console.WriteLine();
+                //   Если не существует - создаём и записываем в строку
+                using (StreamWriter sw = File.CreateText(filePath))  // Конструкция Using (будет рассмотрена в последующих юнитах)
+                {
+                    sw.WriteLine("Олег");
+                    sw.WriteLine("Дмитрий");
+                    sw.WriteLine("Иван");
+                }
             }
-            Console.WriteLine();
-
-            GetCatalogs(); //   Вызов метода получения директорий
-
-            #region Создание новой директории в каталоге текущего пользователя:
-
-            DirectoryInfo dirInfo = new DirectoryInfo(@"/Users/admin");
-
-            if (!dirInfo.Exists)
-                dirInfo.Create();
-
-            dirInfo.CreateSubdirectory("NewFolder");
-            #endregion
-
-            GetCountCatalogs();
-
-            //Получение информации о каталоге: 
-            Console.WriteLine($"Название каталога: {dirInfo.Name}");
-            Console.WriteLine($"Полное название каталога: {dirInfo.FullName}");
-            Console.WriteLine($"Время создания каталога: {dirInfo.CreationTime}");
-            Console.WriteLine($"Корневой каталог: {dirInfo.Root}");
+            // Откроем файл и прочитаем его содержимое
+            using (StreamReader sr = File.OpenText(filePath))
+            {
+                string str = "";
+                while ((str = sr.ReadLine()) != null) // Пока не кончатся строки - считываем из файла по одной и выводим в консоль
+                {
+                    Console.WriteLine(str);
+                }
+            }
         }
         Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
 
