@@ -94,13 +94,16 @@ namespace FirstApp
             {
                 Console.WriteLine(e.Message);
             }
+
+            DeleteCatalog(@"/Users/admin/NewFolder");
+            DeleteCatalog(@"/NewFolder");
         }
 
-        static void DeleteCatalog()
+        static void DeleteCatalog(string path)
         {
             try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(@"/Users/admin/NewFolder");
+                DirectoryInfo dirInfo = new DirectoryInfo(path);
                 dirInfo.Delete(true); // Удаление со всем содержимым
                 Console.WriteLine("Каталог удален");
             }
