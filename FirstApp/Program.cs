@@ -29,6 +29,16 @@ namespace FirstApp
                     Console.WriteLine(str);
                 }
             }
+
+            filePath = @"/Users/admin/source/repos/FirstApp/FirstApp/Program.cs"; // Укажем путь
+
+            // Откроем файл и прочитаем его содержимое
+            using (StreamReader sr = File.OpenText(filePath))
+            {
+                string str = "";
+                while ((str = sr.ReadLine()) != null)
+                    Console.WriteLine(str);
+            }
         }
         Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
 
