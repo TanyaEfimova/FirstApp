@@ -7,9 +7,9 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            Exception except = new Exception();
+            Exception except = new Exception("Wait please...");
 
-            except.Data.Add("Дата создания исключения:", DateTime.Now);
+            except.HelpLink = "https://docs.microsoft.com/ru-ru/dotnet/api/system.exception?view=netframework-4.8";
         }
     }
 }
