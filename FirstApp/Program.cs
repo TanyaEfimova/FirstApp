@@ -7,9 +7,18 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            Exception except = new Exception("Wait please...");
-
-            except.HelpLink = "https://docs.microsoft.com/ru-ru/dotnet/api/system.exception?view=netframework-4.8";
+            try
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.ReadKey();
+            }
         }
     }
 }
