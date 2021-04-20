@@ -9,6 +9,7 @@ namespace FirstApp
         {
             DiffDelegate deleg = IntExtensions.GetDifference;
             Console.WriteLine(deleg.Invoke(30, 21));
+            Console.WriteLine(deleg(30, 21));
             Console.ReadKey();
         }
     }
