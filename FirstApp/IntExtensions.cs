@@ -1,4 +1,6 @@
-﻿namespace FirstApp
+﻿using System;
+
+namespace FirstApp
 {
     static class IntExtensions
     {
@@ -14,7 +16,16 @@
 
         public static int GetDifference(this int a, int b)
         {
-            return a - b;
+            int result = a - b;
+            Console.WriteLine(result);
+            return result;
+        }
+
+        public static int GetSum(this int a, int b)
+        {
+            int result = a + b;
+            Console.WriteLine(result);
+            return result;
         }
     }
 }

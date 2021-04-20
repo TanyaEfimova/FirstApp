@@ -8,8 +8,9 @@ namespace FirstApp
         static void Main(string[] args)
         {
             DiffDelegate deleg = IntExtensions.GetDifference;
-            Console.WriteLine(deleg.Invoke(30, 21));
-            Console.WriteLine(deleg(30, 21));
+            deleg += IntExtensions.GetSum;
+            deleg.Invoke(30, 21);
+
             Console.ReadKey();
         }
     }
