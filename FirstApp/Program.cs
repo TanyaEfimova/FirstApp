@@ -4,21 +4,12 @@ namespace FirstApp
 {
     class Program
     {
-
+        public delegate int DiffDelegate(int a, int b);
         static void Main(string[] args)
         {
-            try
-            {
-                throw new RankException();
-            }
-            catch (RankException ex)
-            {
-                Console.WriteLine(ex.GetType());
-            }
-            finally
-            {
-                Console.ReadKey();
-            }
+            DiffDelegate deleg = IntExtensions.GetDifference;
+            Console.WriteLine(deleg.Invoke(30, 21));
+            Console.ReadKey();
         }
     }
 }
