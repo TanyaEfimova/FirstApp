@@ -7,16 +7,19 @@ namespace FirstApp
         public delegate int DiffDelegate(int a, int b);
         static void Main(string[] args)
         {
-            DiffDelegate deleg = IntExtensions.GetDifference;
-            deleg += IntExtensions.GetSum;
+            DiffDelegate deleg1 = IntExtensions.GetDifference;
+            deleg1 += IntExtensions.GetSum;
+            Console.WriteLine("Методы первого делегата:");
+            deleg1.Invoke(30, 21);
 
-            Console.WriteLine("До удаления второго метода:");
-            deleg.Invoke(30, 21);
+            DiffDelegate deleg2 = IntExtensions.GetSum;
+            Console.WriteLine("Методы второго делегата:");
+            deleg2.Invoke(30, 21);
 
-            deleg -= IntExtensions.GetSum;
+            DiffDelegate deleg3 = deleg1 + deleg2;
+            Console.WriteLine("Методы третьего делегата:");
+            deleg3.Invoke(30, 21);
 
-            Console.WriteLine("После удаления второго метода:");
-            deleg.Invoke(30, 21);
             Console.ReadKey();
         }
     }
