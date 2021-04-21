@@ -4,47 +4,42 @@ namespace FirstApp
 {
     class Program
     {
-        public delegate Car<GasEngine> CarMethods();
-        public delegate void ChildMethods(Child child);
+
         static void Main(string[] args)
         {
-            CarMethods deleg = CarMethod;
-            deleg += LexusMethod;
-            deleg.Invoke();
+            NumberReader numberReader = new NumberReader();
+            numberReader.NumberEnteredEvent += ShowNumber;
 
-            ChildMethods delegat = ChildMethod;
-            delegat += ParentMethod;
-            delegat.Invoke(new Child("Family"));
+            while (true)
+            {
+                try
+                {
+                    numberReader.Read();
+                }
+                catch (FormatException)
+                {
+
+                    Console.WriteLine("Введено некорректное значение");
+                }
+            }
+
 
             Console.Read();
         }
-        public static void ParentMethod(Parent parent)
-        {
-            Console.WriteLine(parent.Name);
-        }
 
-        public static void ChildMethod(Child child)
+        static void ShowNumber(int number)
         {
-            Console.WriteLine(child.Name);
-        }
-
-        public static Car<GasEngine> CarMethod()
-        {
-            Console.WriteLine("CarMethod");
-            return new Car<GasEngine>
+            switch (number)
             {
-                Engine = null
-            };
+                case 1:
+                    Console.WriteLine("Введено значение 1");
+                    break;
+                case 2:
+                    Console.WriteLine("Введено значение 2");
+                    break;
+            }
         }
 
-        public static Lexus LexusMethod()
-        {
-            Console.WriteLine("LexusMethod");
-            return new Lexus
-            {
-                Engine = null
-            };
-        }
 
     }
 }
