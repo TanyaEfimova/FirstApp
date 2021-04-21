@@ -2,10 +2,13 @@
 
 namespace FirstApp
 {
-    abstract class Car<TEngine> where TEngine : Engine
+    class Car<TEngine> where TEngine : Engine
     {
         public TEngine Engine;
 
-        public abstract void ChangePart<TPart>(TPart newPart) where TPart : CarPart;
+        public virtual void ChangePart<TPart>(TPart newPart) where TPart : CarPart
+        {
+            Console.WriteLine(newPart.GetType());
+        }
     }
 }
