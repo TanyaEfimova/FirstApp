@@ -4,37 +4,39 @@ namespace FirstApp
 {
     class Program
     {
-
+        delegate void ShowMessageDelegate();
+        delegate int SumDelegate(int a, int b, int c);
+        delegate bool CheckLengthDelegate(string _row);
         static void Main(string[] args)
         {
-            Func<int, int, int> Addition = AddNumbers;
-            int result = Addition(10, 20);
+            Action showMessageDelegate = ShowMessage;
+            showMessageDelegate.Invoke();
+
+            Func<int, int, int, int> sumDelegate = Sum;
+            int result = sumDelegate.Invoke(1, 30, 120);
             Console.WriteLine(result);
 
-            Action<string> action = new Action<string>(Display);
-            action("Привет разработчик!");
-
-            Predicate<string> CheckIfApple = IsApple;
-            bool res = CheckIfApple("IPhone X");
-            if (res) Console.WriteLine("Это IPhone X");
+            Predicate<string> checkLengthDelegate = CheckLength;
+            bool status = checkLengthDelegate.Invoke("skill_factory");
+            Console.WriteLine(status);
 
             Console.ReadKey();
         }
 
-        private static int AddNumbers(int param1, int param2)
+        static void ShowMessage()
         {
-            return param1 + param2;
+            Console.WriteLine("Hello World!");
         }
 
-        static void Display(string message)
+        static int Sum(int a, int b, int c)
         {
-            Console.WriteLine(message);
+            return a + b + c;
         }
 
-        private static bool IsApple(string modelName)
+        static bool CheckLength(string _row)
         {
-            if (modelName == "IPhone X") return true;
-            else return false;
+            if (_row.Length > 3) return true;
+            return false;
         }
     }
 }
