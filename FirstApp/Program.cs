@@ -25,7 +25,7 @@ namespace FirstApp
             bool status = checkLengthDelegate.Invoke("skill_factory");
             Console.WriteLine(status);
 
-            RandomNumberDelegate randomNumberDelegate = delegate
+            RandomNumberDelegate randomNumberDelegate = () =>
             {
                 return new Random().Next(0, 100);
             };
