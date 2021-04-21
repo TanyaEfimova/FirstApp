@@ -10,7 +10,7 @@ namespace FirstApp
         delegate int RandomNumberDelegate();
         static void Main(string[] args)
         {
-            ShowMessageDelegate showMessageDelegate = delegate (string _message)
+            ShowMessageDelegate showMessageDelegate = _message =>
             {
                 Console.WriteLine(_message);
             };
