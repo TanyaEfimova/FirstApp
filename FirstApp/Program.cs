@@ -7,6 +7,7 @@ namespace FirstApp
         delegate void ShowMessageDelegate(string _message);
         delegate int SumDelegate(int a, int b, int c);
         delegate bool CheckLengthDelegate(string _row);
+        delegate int RandomNumberDelegate();
         static void Main(string[] args)
         {
             ShowMessageDelegate showMessageDelegate = delegate (string _message)
@@ -24,9 +25,20 @@ namespace FirstApp
             bool status = checkLengthDelegate.Invoke("skill_factory");
             Console.WriteLine(status);
 
+            RandomNumberDelegate randomNumberDelegate = delegate
+            {
+                return new Random().Next(0, 100);
+            };
+
+            int reslt = randomNumberDelegate.Invoke();
+            Console.WriteLine(reslt);
+
             Console.ReadKey();
         }
-
+        static int RandomNumber()
+        {
+            return new Random().Next(0, 100);
+        }
         static void ShowMessage(string _message)
         {
             Console.WriteLine(_message);
