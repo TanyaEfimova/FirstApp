@@ -4,13 +4,17 @@ namespace FirstApp
 {
     class Program
     {
-        delegate void ShowMessageDelegate();
+        delegate void ShowMessageDelegate(string _message);
         delegate int SumDelegate(int a, int b, int c);
         delegate bool CheckLengthDelegate(string _row);
         static void Main(string[] args)
         {
-            Action showMessageDelegate = ShowMessage;
-            showMessageDelegate.Invoke();
+            ShowMessageDelegate showMessageDelegate = delegate (string _message)
+            {
+                Console.WriteLine(_message);
+            };
+
+            showMessageDelegate.Invoke("Hello World!");
 
             Func<int, int, int, int> sumDelegate = Sum;
             int result = sumDelegate.Invoke(1, 30, 120);
@@ -23,9 +27,9 @@ namespace FirstApp
             Console.ReadKey();
         }
 
-        static void ShowMessage()
+        static void ShowMessage(string _message)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(_message);
         }
 
         static int Sum(int a, int b, int c)
