@@ -7,21 +7,21 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            Writer writer = new Writer();
-            ((IWriter)writer).Write();
+            Worker worker = new Worker();
+            worker.Build();
         }
     }
 
-    public interface IWriter
+    public interface IWorker
     {
-        void Write();
+        public void Build();
     }
 
-    public class Writer : IWriter
+    public class Worker : IWorker
     {
-        void IWriter.Write()
+        public void Build()
         {
-
+            throw new NotImplementedException();
         }
     }
 }
