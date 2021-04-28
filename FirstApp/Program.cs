@@ -7,36 +7,32 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
+            IMessenger<Phone> viberInPhone = new Viber<Phone>();
+            IMessenger<Phone> viberInIPhone = new Viber<ChildPhone>();
 
+            viberInPhone.DeviceInfo();
+            viberInIPhone.DeviceInfo();
+
+            Console.Read();
         }
     }
 
-    public interface IBook
+    public interface IMessenger<out T>
     {
-        void Read();
+        T DeviceInfo();
     }
 
-    public interface IDevice
+    public class Phone { }
+    public class ChildPhone : Phone { }
+    public class Computer { }
+    public class Viber<T> : IMessenger<T> where T : Phone, new()
     {
-        void TurnOn();
-        void TurnOff();
-    }
-
-    public class ElectronicBook : IBook, IDevice
-    {
-        void IBook.Read()
+        public T DeviceInfo()
         {
-            throw new NotImplementedException();
-        }
-
-        void IDevice.TurnOff()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDevice.TurnOn()
-        {
-            throw new NotImplementedException();
+            T device = new T();
+            Console.WriteLine(device);
+            return new T();
         }
     }
+
 }
