@@ -7,21 +7,52 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            Worker worker = new Worker();
-            ((IWorker)worker).Build();
+            IFile file = new FileInfo();
+            IBinaryFile binaryFile = new FileInfo();
+            FileInfo fileInfo = new FileInfo();
+
+            file.ReadFile();
+
+            binaryFile.ReadFile();
+            binaryFile.OpenBinaryFile();
+
+            fileInfo.Search("Строка для поиска");
+
+            Console.ReadKey();
         }
     }
 
-    public interface IWorker
+    public interface IFile
     {
-        public void Build();
+        void ReadFile();
     }
 
-    public class Worker : IWorker
+    public interface IBinaryFile
     {
-        void IWorker.Build()
+        void ReadFile();
+        void OpenBinaryFile();
+    }
+
+    public class FileInfo : IFile, IBinaryFile
+    {
+        void IBinaryFile.OpenBinaryFile()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Открываем бинарный файл...");
+        }
+
+        void IFile.ReadFile()
+        {
+            Console.WriteLine("Читаем текстовый файл");
+        }
+
+        void IBinaryFile.ReadFile()
+        {
+            Console.WriteLine("Читаем бинарный файл");
+        }
+
+        public void Search(string text)
+        {
+            Console.WriteLine("Начался поиск текста в файле...");
         }
     }
 }
