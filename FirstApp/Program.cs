@@ -7,30 +7,55 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            IMessenger<Phone> viberInPhone = new Viber<Phone>();
-            viberInPhone.GetDeviceInfo(new Phone());
+            IGarageManager<Machine, Garage> garageManager1 = new GarageManagerBase();
 
-            IMessenger<ChildPhone> viberInIPhone = new Viber<Phone>();
-            viberInIPhone.GetDeviceInfo(new ChildPhone());
+            //контравариантность
+            IGarageManager<Auto, Garage> garageManager2 = new GarageManagerBase();
+
+            //ковариантность
+            IGarageManager<Auto, House> garageManager3 = new GarageManagerBase();
 
             Console.Read();
         }
     }
 
-    public interface IMessenger<in T>
+    public class Machine
     {
-        void GetDeviceInfo(T device);
+
     }
 
-    public class Phone { }
-    public class ChildPhone : Phone { }
-    public class Computer { }
-    public class Viber<T> : IMessenger<T> where T : Phone, new()
+    public class Auto : Machine
     {
-        public void GetDeviceInfo(T device)
+
+    }
+
+    public class House
+    {
+
+    }
+
+    public class Garage : House
+    {
+
+    }
+
+    public interface IGarageManager<in T, out Z>
+    {
+        Z GetGarageInfo();
+
+        void Add(T machine);
+    }
+
+    public class GarageManagerBase : IGarageManager<Machine, Garage>
+    {
+        public void Add(Machine machine)
         {
-            Console.WriteLine(device);
+            throw new NotImplementedException();
+        }
+
+        public Garage GetGarageInfo()
+        {
+            throw new NotImplementedException();
         }
     }
-
 }
