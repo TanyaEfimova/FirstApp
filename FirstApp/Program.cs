@@ -4,42 +4,48 @@ namespace FirstApp
 {
     class Program
     {
-
+        static ILogger Logger { get; set; }
         static void Main(string[] args)
         {
-            NumberReader numberReader = new NumberReader();
-            numberReader.NumberEnteredEvent += ShowNumber;
+            Logger = new Logger();
 
-            while (true)
-            {
-                try
-                {
-                    numberReader.Read();
-                }
-                catch (FormatException)
-                {
+            var worker1 = new Worker1(Logger);
+            var worker2 = new Worker2(Logger);
+            var worker3 = new Worker3(Logger);
 
-                    Console.WriteLine("Введено некорректное значение");
-                }
-            }
+            worker1.Work();
+            worker2.Work();
+            worker3.Work();
 
-
-            Console.Read();
+            Console.ReadKey();
         }
+    }
 
-        static void ShowNumber(int number)
+    public interface ILogger
+    {
+        void Event(string message);
+        void Error(string message);
+    }
+
+    public class Logger : ILogger
+    {
+        public void Error(string message)
         {
-            switch (number)
-            {
-                case 1:
-                    Console.WriteLine("Введено значение 1");
-                    break;
-                case 2:
-                    Console.WriteLine("Введено значение 2");
-                    break;
-            }
+            Console.WriteLine(message);
         }
 
+        public void Event(string message)
+        {
+            //можем менять логику
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Magenta;
 
+            Console.WriteLine(message);
+        }
+    }
+
+    public interface IWorker
+    {
+        void Work();
     }
 }
