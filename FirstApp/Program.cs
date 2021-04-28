@@ -7,53 +7,33 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            IGarageManager<Machine, Garage> garageManager1 = new GarageManagerBase();
+            IUpdater<User> updater = new UserService();
 
             //контравариантность
-            IGarageManager<Auto, Garage> garageManager2 = new GarageManagerBase();
+            IUpdater<Account> updater1 = new UserService();
 
-            //ковариантность
-            IGarageManager<Auto, House> garageManager3 = new GarageManagerBase();
-
-            Console.Read();
+            Console.ReadKey();
         }
     }
 
-    public class Machine
+    public class User
     {
 
     }
 
-    public class Auto : Machine
+    public class Account : User
     {
 
     }
 
-    public class House
+    public interface IUpdater<in T>
     {
-
+        void Update(T entity);
     }
 
-    public class Garage : House
+    public class UserService : IUpdater<User>
     {
-
-    }
-
-    public interface IGarageManager<in T, out Z>
-    {
-        Z GetGarageInfo();
-
-        void Add(T machine);
-    }
-
-    public class GarageManagerBase : IGarageManager<Machine, Garage>
-    {
-        public void Add(Machine machine)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Garage GetGarageInfo()
+        public void Update(User entity)
         {
             throw new NotImplementedException();
         }
