@@ -21,31 +21,22 @@ namespace FirstApp
         }
     }
 
-    public interface ILogger
+    public interface ICalculator
     {
-        void Event(string message);
-        void Error(string message);
+        void Solve(int number);
+        void Solve(int numberOne, int numberTwo);
     }
 
-    public class Logger : ILogger
+    public class BaseCalculator : ICalculator
     {
-        public void Error(string message)
+        void ICalculator.Solve(int number)
         {
-            Console.WriteLine(message);
+            
         }
 
-        public void Event(string message)
+        public void Solve(int numberOne, int numberTwo)
         {
-            //можем менять логику
-            Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.ForegroundColor = ConsoleColor.Magenta;
-
-            Console.WriteLine(message);
+            throw new NotImplementedException();
         }
-    }
-
-    public interface IWorker
-    {
-        void Work();
     }
 }
