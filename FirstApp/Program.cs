@@ -7,52 +7,40 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            IFile file = new FileInfo();
-            IBinaryFile binaryFile = new FileInfo();
-            FileInfo fileInfo = new FileInfo();
 
-            file.ReadFile();
-
-            binaryFile.ReadFile();
-            binaryFile.OpenBinaryFile();
-
-            fileInfo.Search("Строка для поиска");
-
-            Console.ReadKey();
         }
     }
 
-    public interface IFile
+    public interface IWriter
     {
-        void ReadFile();
+        void Write();
     }
 
-    public interface IBinaryFile
+    public interface IReader
     {
-        void ReadFile();
-        void OpenBinaryFile();
+        void Read();
     }
 
-    public class FileInfo : IFile, IBinaryFile
+    public interface IMailer
     {
-        void IBinaryFile.OpenBinaryFile()
+        void SendEmail();
+    }
+
+    public class FileManager : IWriter, IReader, IMailer
+    {
+        public void Read()
         {
-            Console.WriteLine("Открываем бинарный файл...");
+            throw new NotImplementedException();
         }
 
-        void IFile.ReadFile()
+        public void SendEmail()
         {
-            Console.WriteLine("Читаем текстовый файл");
+            throw new NotImplementedException();
         }
 
-        void IBinaryFile.ReadFile()
+        public void Write()
         {
-            Console.WriteLine("Читаем бинарный файл");
-        }
-
-        public void Search(string text)
-        {
-            Console.WriteLine("Начался поиск текста в файле...");
+            throw new NotImplementedException();
         }
     }
 }
