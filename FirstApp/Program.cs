@@ -8,18 +8,18 @@ namespace FirstApp
         static void Main(string[] args)
         {
             IMessenger<Phone> viberInPhone = new Viber<Phone>();
-            IMessenger<Phone> viberInIPhone = new Viber<ChildPhone>();
+            viberInPhone.GetDeviceInfo(new Phone());
 
-            viberInPhone.DeviceInfo();
-            viberInIPhone.DeviceInfo();
+            IMessenger<ChildPhone> viberInIPhone = new Viber<Phone>();
+            viberInIPhone.GetDeviceInfo(new ChildPhone());
 
             Console.Read();
         }
     }
 
-    public interface IMessenger<out T>
+    public interface IMessenger<in T>
     {
-        T DeviceInfo();
+        void GetDeviceInfo(T device);
     }
 
     public class Phone { }
@@ -27,11 +27,9 @@ namespace FirstApp
     public class Computer { }
     public class Viber<T> : IMessenger<T> where T : Phone, new()
     {
-        public T DeviceInfo()
+        public void GetDeviceInfo(T device)
         {
-            T device = new T();
             Console.WriteLine(device);
-            return new T();
         }
     }
 
