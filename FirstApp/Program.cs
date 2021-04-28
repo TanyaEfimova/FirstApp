@@ -8,7 +8,7 @@ namespace FirstApp
         static void Main(string[] args)
         {
             Worker worker = new Worker();
-            worker.Build();
+            ((IWorker)worker).Build();
         }
     }
 
@@ -19,7 +19,7 @@ namespace FirstApp
 
     public class Worker : IWorker
     {
-        public void Build()
+        void IWorker.Build()
         {
             throw new NotImplementedException();
         }
