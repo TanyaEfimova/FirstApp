@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace FirstApp
 {
@@ -7,10 +8,36 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите свой возраст");
-            var age = Convert.ToInt32(Console.ReadLine());
-            if (age > 13) Console.WriteLine("Вы успешно зарегистрированы");
-            else Console.WriteLine("Пользователи младше 14 лет не могут быть зарегистрированы");
+            var array = Enumerable.Range(1, 4).ToArray();
+            Console.WriteLine(BinarySearch(5, array, 0, 3));
+        }
+
+        static int BinarySearch(int value, int[] array, int left, int right)
+        {
+
+            var middle = (left + right) / 2;
+
+            var midElement = array[middle];
+
+            if (midElement == value)
+            {
+                return middle;
+            }
+            else if (left < right)
+            {
+                if (value < midElement)
+                {
+                    return BinarySearch(value, array, left, middle - 1);
+                }
+                else
+                {
+                    return BinarySearch(value, array, middle + 1, right);
+                }
+            }
+            else
+            {
+                return -1;
+            }
         }
     }
 }
