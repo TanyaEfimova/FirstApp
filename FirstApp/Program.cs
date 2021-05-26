@@ -53,6 +53,18 @@ namespace FirstApp
                 }
             }
         }
+
+        static int GetIndex(int[] array, int element)
+        {
+            int index;
+            for (index = 0; index < array.Length; index++)
+            {
+                if (array[index] > element)
+                    return index;
+            }
+
+            return index;
+        }
     }
 }
 
