@@ -14,30 +14,28 @@ namespace FirstApp
 
         static int BinarySearch(int value, int[] array, int left, int right)
         {
-
-            var middle = (left + right) / 2;
-
-            var midElement = array[middle];
-
-            if (midElement == value)
+            while (left <= right)
             {
-                return middle;
-            }
-            else if (left < right)
-            {
-                if (value < midElement)
+                var middle = (left + right) / 2;
+
+                var midElement = array[middle];
+
+                if (midElement == value)
                 {
-                    return BinarySearch(value, array, left, middle - 1);
+                    return middle;
+                }
+                else if (value < midElement)
+                {
+                    right = middle - 1;
                 }
                 else
                 {
-                    return BinarySearch(value, array, middle + 1, right);
+                    left = middle + 1;
                 }
+
             }
-            else
-            {
-                return -1;
-            }
+            return -1;
+
         }
     }
 }
