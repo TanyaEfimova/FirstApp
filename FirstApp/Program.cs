@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
+using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -9,8 +10,7 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            var array = Enumerable.Range(1, 4).ToArray();
-            Console.WriteLine(BinarySearch(5, array, 0, 3));
+            var summary = BenchmarkRunner.Run<Testing>();
         }
 
         static int BinarySearch(int value, int[] array, int left, int right)
