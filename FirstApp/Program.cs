@@ -7,16 +7,12 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Сколько элементов будет в массиве?");
-            var count = Convert.ToInt32(Console.ReadLine());
-            var array = new string[count];
-            for (int i = 0; i < count; i++)
-            {
-                array[i] = Console.ReadLine();
-            }
-            Console.WriteLine("Все элементы записаны");
+            Console.WriteLine("Введите свой возраст");
+            var age = Convert.ToInt32(Console.ReadLine());
+            if (age > 13) Console.WriteLine("Вы успешно зарегистрированы");
+            else Console.WriteLine("Пользователи младше 14 лет не могут быть зарегистрированы");
         }
     }
 }
 
-   
+
