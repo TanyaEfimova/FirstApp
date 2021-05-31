@@ -1,7 +1,4 @@
-﻿using BenchmarkDotNet.Running;
-using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System;
 
 namespace FirstApp
 {
@@ -10,37 +7,31 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            Estimate(20);
+            int[,] myArray =
+           {
+               { 5, 8, 3, 10 },
+               { 13, 2, 1, 7 },
+               { 0, 2, 5, 2 },
+               { 3, 8, 3, 45 },
+               { 2, 4, 31, 4 }
+           };
 
-            Console.ReadKey();
-        }
+            // Двумерный массив можно представить в виде таблицы.
 
-        static void CreateMatrix(int n)
-        {
-            var matrix = new int[n][];
+            //  сохраним длину первого измерения массива (ширина таблицы)
+            int rowLength = myArray.GetLength(0);
 
-            for (int i = 0; i < n; i++)
+            //  сохраним длину второго измерения массива (высота таблицы)
+            int columnLength = myArray.GetLength(1);
+
+            // проход по рядам
+            for (int i = 0; i < rowLength; i++)
             {
-                matrix[i] = new int[n];
-            }
-
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    matrix[i][j] = i + j;
-                }
-            }
-        }
-
-        static void Estimate(int n)
-        {
-            for (int i = 0; i < n; i++)
-            {
-                CreateMatrix(10000);
+                // проход по колонкам
+                for (int j = 0; j < columnLength; j++)
+                    Console.WriteLine(myArray[i, j]);
             }
         }
-
     }
 }
 
