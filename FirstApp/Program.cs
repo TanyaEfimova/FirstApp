@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace FirstApp
 {
@@ -7,23 +8,31 @@ namespace FirstApp
 
         static void Main(string[] args)
         {
-            //  вернет true
-            Console.WriteLine(CheckAscending(new[] { -1, 2, 3, 4, 8 }));
-
-            //  вернет false
-            Console.WriteLine(CheckAscending(new[] { -1, 2, 3, 10, 8 }));
-        }
-
-        static bool CheckAscending(int[] numbers)
-        {
-            //  используем цикл for для обхода массива
-            for (int i = 0; i < numbers.Length - 1; i++)
+            var months = new[]
             {
-                //  проверяем следующий элемент на предмет того, что он меньше предыдушего
-                if (numbers[i + 1] < numbers[i])
-                    return false;
+                "Jan", "Feb", "Mar", "Apr", "May" , "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            };
+
+            var numbers = new[]
+            {
+                1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12
+            };
+
+            // инициализация ArrayList
+            var combinedList = new ArrayList();
+
+            //  пробегаемся по массиву чисел
+            foreach (var number in numbers)
+            {
+                // добавляем в ArrayList строку месяца (начинаем с нулевого по индексу)
+                combinedList.Add(months[number - 1]);
+
+                // добавляем его порядковый номер
+                combinedList.Add(number);
             }
-            return true;
+
+            foreach (var value in combinedList)
+                Console.WriteLine(value);
         }
     }
 }
