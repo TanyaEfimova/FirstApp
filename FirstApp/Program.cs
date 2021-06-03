@@ -7,16 +7,35 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            //  создаём пустой список с типом данных Contact
-            var phoneBook = new List<Contact>();
+            var months = new List<String>()
+            {
+               "Jan", "Feb", "Mar", "Apr", "May" , "Jun", "Jul", "Aug", "Sep"
+            };
 
-            // добавляем контакты
-            phoneBook.Add(new Contact("Игорь", 79990000000, "igor@example.com"));
-            phoneBook.Add(new Contact("Андрей", 79990000001, "andrew@example.com"));
+            months.Add("Oct");
+            months.AddRange(new[] { "Nov", "Dec" });
+            Console.WriteLine(months.Count);
 
-            // проверяем, что добавилось в список
-            foreach (var contact in phoneBook)
-                Console.WriteLine(contact.Name + ": " + contact.PhoneNumber);
+            months.Sort();
+            int result = months.BinarySearch("Jul");
+            Console.WriteLine(result);
+
+            int index = months.IndexOf("Feb");
+            Console.WriteLine(result);
+
+            months.Insert(0, "example");
+            Console.WriteLine(months.Count);
+
+            var removeResult = months.Remove("Feb");
+            Console.WriteLine(months.Count);
+
+            months.RemoveAt(1);
+            Console.WriteLine(months.Count);
+
+            foreach (var item in months)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
