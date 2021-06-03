@@ -8,34 +8,35 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var months = new List<string>()
-            {
-                "Jan", "Feb", "Mar", "Apr", "May"
-            };
+            // Создаем массив строк
+            string[] names =  {
+               "Игорь",   // повторяющееся значение
+               "Андрей",
+               "Василий",
+               "София",
+               "Елена",
+               "Анна",
+               "Игорь"  //  повторяющееся значение
+           };
 
-            var missing = new ArrayList()
-            {
-                 1, 2, 3, 5, "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            };
+            // Выведем длину массива в консоль
+            Console.WriteLine("Длина массива " + names.Length);
+            Console.WriteLine();
+            Console.WriteLine("Данные в массиве");
+            foreach (var n in names)
+                Console.WriteLine(n);
+            Console.WriteLine();
 
-            Method(months, missing);
-        }
+            // Создаем хэш-сет, передавая в конструктор наш массив
+            HashSet<string> hSet = new HashSet<string>(names);
 
-        static void Method(List<string> col1, ArrayList col2)
-        {
-            // инициализируем массив для 7 нужных нам недостающих элементов
-            var newColl = new string[7];
-
-            // извлекаем эти элементы из ArrayList, и копируем в массив
-            col2.GetRange(4, 7).CopyTo(newColl);
-
-            // Добавляем наш массив в конец списка
-            col1.AddRange(newColl);
-
-            foreach (var item in col1)
-            {
-                Console.WriteLine(item);
-            }
+            // Посчитаем объекты в массиве
+            Console.WriteLine("Длина хэш-сета " + hSet.Count);
+            Console.WriteLine();
+            // Выведем все элементы в консоль и посмотрим, есть ли дубликаты
+            Console.WriteLine("Элементы в хэшсете:");
+            foreach (var n in hSet)
+                Console.WriteLine(n);
         }
     }
 }
