@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace FirstApp
@@ -7,29 +8,33 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var phoneBook = new List<Contact>();
+            var months = new List<string>()
+            {
+                "Jan", "Feb", "Mar", "Apr", "May"
+            };
 
-            // добавляем контакты
-            phoneBook.Add(new Contact("Игорь", 79990000000, "igor@example.com"));
-            phoneBook.Add(new Contact("Андрей", 79990000001, "andrew@example.com"));
+            var missing = new ArrayList()
+            {
+                 1, 2, 3, 5, "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            };
 
-            var contact = new Contact("John", 79990000002, "john@example.com");
-
-            AddUnique(contact, phoneBook);
+            Method(months, missing);
         }
 
-        static void AddUnique(Contact contact, List<Contact> phoneBook)
+        static void Method(List<string> col1, ArrayList col2)
         {
-            if (phoneBook.IndexOf(contact) < 0)
-            {
-                phoneBook.Add(contact);
-            }
+            // инициализируем массив для 7 нужных нам недостающих элементов
+            var newColl = new string[7];
 
-            phoneBook.Sort((x, y) => String.Compare(x.Name, y.Name, StringComparison.Ordinal));
+            // извлекаем эти элементы из ArrayList, и копируем в массив
+            col2.GetRange(4, 7).CopyTo(newColl);
 
-            foreach (var item in phoneBook)
+            // Добавляем наш массив в конец списка
+            col1.AddRange(newColl);
+
+            foreach (var item in col1)
             {
-                Console.WriteLine(item.Name + ": " + item.PhoneNumber);
+                Console.WriteLine(item);
             }
         }
     }
