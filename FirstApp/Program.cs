@@ -48,6 +48,15 @@ namespace FirstApp
 
             Console.WriteLine();
 
+            hSet.SymmetricExceptWith(new[] { "Дмитрий", "Сергей", "Игорь" });
+
+            Console.WriteLine("Элементы после объединения с новой коллекцией:");
+
+            foreach (var n in hSet)
+                Console.WriteLine(n);
+
+            Console.WriteLine();
+
             // Создадим два множества
             SortedSet<char> lettersOne = new SortedSet<char>();
             SortedSet<char> lettersTwo = new SortedSet<char>();
