@@ -7,34 +7,29 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var months = new List<String>()
+            var phoneBook = new List<Contact>();
+
+            // добавляем контакты
+            phoneBook.Add(new Contact("Игорь", 79990000000, "igor@example.com"));
+            phoneBook.Add(new Contact("Андрей", 79990000001, "andrew@example.com"));
+
+            var contact = new Contact("John", 79990000002, "john@example.com");
+
+            AddUnique(contact, phoneBook);
+        }
+
+        static void AddUnique(Contact contact, List<Contact> phoneBook)
+        {
+            if (phoneBook.IndexOf(contact) < 0)
             {
-               "Jan", "Feb", "Mar", "Apr", "May" , "Jun", "Jul", "Aug", "Sep"
-            };
+                phoneBook.Add(contact);
+            }
 
-            months.Add("Oct");
-            months.AddRange(new[] { "Nov", "Dec" });
-            Console.WriteLine(months.Count);
+            phoneBook.Sort((x, y) => String.Compare(x.Name, y.Name, StringComparison.Ordinal));
 
-            months.Sort();
-            int result = months.BinarySearch("Jul");
-            Console.WriteLine(result);
-
-            int index = months.IndexOf("Feb");
-            Console.WriteLine(result);
-
-            months.Insert(0, "example");
-            Console.WriteLine(months.Count);
-
-            var removeResult = months.Remove("Feb");
-            Console.WriteLine(months.Count);
-
-            months.RemoveAt(1);
-            Console.WriteLine(months.Count);
-
-            foreach (var item in months)
+            foreach (var item in phoneBook)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.Name + ": " + item.PhoneNumber);
             }
         }
     }
