@@ -37,6 +37,14 @@ namespace FirstApp
             Console.WriteLine("Элементы в хэшсете:");
             foreach (var n in hSet)
                 Console.WriteLine(n);
+            Console.WriteLine();
+
+            hSet.UnionWith(new[] { "Дмитрий", "Сергей", "Игорь" });
+
+            Console.WriteLine("Элементы после объединения с новой коллекцией:");
+
+            foreach (var n in hSet)
+                Console.WriteLine(n);
         }
     }
 }
