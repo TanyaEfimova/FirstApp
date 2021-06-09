@@ -8,14 +8,25 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            string[] people = { "Анна", "Мария", "Сергей", "Алексей", "Дмитрий", "Ян" };
+            var objects = new List<object>()
+            {
+                1,
+                "Сергей ",
+                "Андрей ",
+                300,
+            };
 
-            var selectedPeople = (from p in people
-                                  where p.ToUpper().StartsWith("А")
-                                  orderby p
-                                  select p).Count();
+            var selectedobj = from p in objects where p is string orderby p select p;
 
-            Console.WriteLine($"В выборке {selectedPeople} чел");
+            foreach (var item in selectedobj)
+            {
+                Console.WriteLine(item);
+            }
+
+            foreach (var selectedobj2 in objects.Where(p => p is string).OrderBy(p => p))
+            {
+                Console.WriteLine(selectedobj2);
+            }
         }
     }
 }
