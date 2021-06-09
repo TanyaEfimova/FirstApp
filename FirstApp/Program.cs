@@ -17,15 +17,15 @@ namespace FirstApp
             russianCities.Add(new City("Севастополь", 449138));
 
             var bigCities = from russianCity in russianCities
-                            where russianCity.Population > 1000000
-                            orderby russianCity.Population descending
+                            where russianCity.Name.Length <= 10
+                            orderby russianCity.Name.Length
                             select russianCity;
 
             foreach (var bigCity in bigCities)
                 Console.WriteLine(bigCity.Name + " - " + bigCity.Population);
 
-            var bigCities2 = russianCities.Where(c => c.Population > 1000000)
-                                         .OrderByDescending(c => c.Population);
+            var bigCities2 = russianCities.Where(c => c.Name.Length <= 10)
+                                         .OrderBy(c => c.Name.Length);
 
             foreach (var bigCity in bigCities2)
                 Console.WriteLine(bigCity.Name + " - " + bigCity.Population);
