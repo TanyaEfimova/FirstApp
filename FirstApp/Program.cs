@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstApp
 {
@@ -9,22 +10,13 @@ namespace FirstApp
         {
             string[] people = { "Анна", "Мария", "Сергей", "Алексей", "Дмитрий", "Ян" };
 
-            List<string> persons = new List<string>();
+            var selectedPeople = from p in people // промежуточная переменная p 
+                                 where p.StartsWith("А") // фильтрация по условию
+                                 orderby p // сортировка по возрастанию (дефолтная)
+                                 select p; // выбираем объект и сохраняем в выборку
 
-            foreach (var item in people)
-            {
-                if (item.ToUpper().StartsWith('А'))
-                {
-                    persons.Add(item);
-                }
-            }
-
-            persons.Sort();
-
-            foreach (var person in persons)
-            {
-                Console.WriteLine(person);
-            }
+            foreach (string s in selectedPeople)
+                Console.WriteLine(s);
         }
     }
 }
