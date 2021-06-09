@@ -10,10 +10,12 @@ namespace FirstApp
         {
             string[] people = { "Анна", "Мария", "Сергей", "Алексей", "Дмитрий", "Ян" };
 
-            var selectedPeople = people.Where(p => p.StartsWith("А")).OrderBy(p => p);
+            var selectedPeople = (from p in people
+                                  where p.ToUpper().StartsWith("А")
+                                  orderby p
+                                  select p).Count();
 
-            foreach (string s in selectedPeople)
-                Console.WriteLine(s);
+            Console.WriteLine($"В выборке {selectedPeople} чел");
         }
     }
 }
