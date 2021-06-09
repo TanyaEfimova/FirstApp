@@ -8,25 +8,19 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var objects = new List<object>()
-            {
-                1,
-                "Сергей ",
-                "Андрей ",
-                300,
-            };
+            int[] numbers = { 1, 2, 3, 4, 10, 34, 55, 66, 77, 88 };
 
-            var selectedobj = from p in objects where p is string orderby p select p;
+            var evenNums = from i in numbers
+                           where i % 2 == 0 && i > 10
+                           select i;
 
-            foreach (var item in selectedobj)
-            {
-                Console.WriteLine(item);
-            }
+            foreach (int i in evenNums)
+                Console.WriteLine(i);
 
-            foreach (var selectedobj2 in objects.Where(p => p is string).OrderBy(p => p))
-            {
-                Console.WriteLine(selectedobj2);
-            }
+            var evens = numbers.Where(i => i % 2 == 0 && i > 10);
+
+            foreach (int i in evens)
+                Console.WriteLine(i);
         }
     }
 }
