@@ -8,18 +8,24 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var companies = new Dictionary<string, string[]>();
+            var numsList = new List<int[]>()
+            {
+               new[] {2, 3, 7, 1},
+               new[] {45, 17, 88, 0},
+               new[] {23, 32, 44, -6},
+            };
 
-            companies.Add("Apple", new[] { "Mobile", "Desktop" });
-            companies.Add("Samsung", new[] { "Mobile" });
-            companies.Add("IBM", new[] { "Desktop" });
+            var numbers = from sequence in numsList
+                          from number in sequence
+                          orderby number
+                          select number;
 
-            var mobileCompanies = companies
-                // смотрим те из выборки, значения в которых содержат искомое
-                .Where(c => c.Value.Contains("Mobile"));
+            //или так: var numbers = numsList.SelectMany(s => s).OrderBy(s => s);
 
-            foreach (var company in mobileCompanies)
-                Console.WriteLine(company.Key);
+            foreach (var num in numbers)
+            {
+                Console.WriteLine(num);
+            }
         }
     }
 }
