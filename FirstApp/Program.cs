@@ -8,36 +8,18 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            // Подготовим данные
-            List<Student> students = new List<Student>
-            {
-               new Student {Name="Андрей", Age=23, Languages = new List<string> {"английский", "немецкий" }},
-               new Student {Name="Сергей", Age=27, Languages = new List<string> {"английский", "французский" }},
-               new Student {Name="Дмитрий", Age=29, Languages = new List<string> {"английский", "испанский" }},
-               new Student {Name="Василий", Age=24, Languages = new List<string> {"испанский", "немецкий" }}
-            };
+            var companies = new Dictionary<string, string[]>();
 
-            // Составим запрос ()
-            var selectedStudents = students.SelectMany(
-                   // коллекция, которую нужно преобразовать
-                   s => s.Languages,
-                   // функция преобразования, применяющаяся к каждому элементу коллекции
-                   (s, l) => new { Student = s, Lang = l })
-               // дополнительные условия                          
-               .Where(s => s.Lang == "английский" && s.Student.Age < 28)
-               // указатель на объект выборки
-               .Select(s => s.Student);
+            companies.Add("Apple", new[] { "Mobile", "Desktop" });
+            companies.Add("Samsung", new[] { "Mobile" });
+            companies.Add("IBM", new[] { "Desktop" });
 
-            // Выведем результат
-            foreach (Student student in selectedStudents)
-                Console.WriteLine($"{student.Name} - {student.Age}");
-        }
+            var mobileCompanies = companies
+                // смотрим те из выборки, значения в которых содержат искомое
+                .Where(c => c.Value.Contains("Mobile"));
 
-        class Student
-        {
-            public string Name { get; set; }
-            public int Age { get; set; }
-            public List<string> Languages { get; set; }
+            foreach (var company in mobileCompanies)
+                Console.WriteLine(company.Key);
         }
     }
 }
