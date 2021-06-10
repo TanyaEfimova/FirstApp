@@ -25,6 +25,9 @@ namespace FirstApp
                                           FirstName = s.Name,
                                           YearOfBirth = DateTime.Now.Year - s.Age
                                       };
+            // Выведем результат
+            foreach (var application in studentApplications)
+                Console.WriteLine($"{application.FirstName}, {application.YearOfBirth}");
         }
     }
 
