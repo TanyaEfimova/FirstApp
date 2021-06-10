@@ -16,17 +16,20 @@ namespace FirstApp
                new Student {Name="Василий", Age=24, Languages = new List<string> {"испанский", "немецкий" }}
             };
 
-            var anketas = from s in students
-                          where s.Age < 27
-                          let yearOfBirth = DateTime.Now.Year - s.Age
-                          select new Application()
-                          {
-                              Name = s.Name,
-                              YearOfBirth = yearOfBirth
-                          };
+            var courses = new List<Course>
+            {
+               new Course {Name="Язык программирования C#", StartDate = new DateTime(2020, 12, 20)},
+               new Course {Name="Язык SQL и реляционные базы данных", StartDate = new DateTime(2020, 12, 15)},
+            };
 
-            foreach (var anketa in anketas)
-                Console.WriteLine(anketa.Name + ", " + anketa.YearOfBirth);
+            // добавим студентов в курсы
+            var studentsWithCourses = from student in students
+                                      from course in courses
+                                      select new { Name = student.Name, CourseName = course.Name };
+
+            // выведем результат
+            foreach (var stud in studentsWithCourses)
+                Console.WriteLine($"Студент {stud.Name} добавлен в курс {stud.CourseName}");
         }
     }
 
@@ -37,10 +40,10 @@ namespace FirstApp
         public List<string> Languages { get; set; }
     }
 
-    public class Application
+    class Course
     {
         public string Name { get; set; }
-        public int YearOfBirth { get; set; }
+        public DateTime StartDate { get; set; }
     }
 }
 
