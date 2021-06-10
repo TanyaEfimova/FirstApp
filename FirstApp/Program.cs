@@ -19,8 +19,8 @@ namespace FirstApp
                new Student {Name="Василий", Age=24, Languages = new List<string> {"испанский", "немецкий" }}
             };
 
-            // Сортировка по возрасту
-            var sortedStuds = from s in students orderby s.Age select s;
+            // Сортировка сначала по имени, а затем - по возрасту
+            var sortedStuds = from s in students orderby s.Name, s.Age select s;
 
             foreach (var stud in sortedStuds)
                 Console.WriteLine(stud.Name + ", " + stud.Age);
@@ -35,16 +35,20 @@ namespace FirstApp
 
             Console.WriteLine();
 
-            //  По возрастанию
-            var sortedStudentsAsc = students.OrderBy(s => s.Age);
+            // Сортировка по имени и возрасту (возрастание)
+            var sortedStudentsAsc = students
+               .OrderBy(s => s.Name)
+               .ThenBy(s => s.Age);
 
             foreach (var stud in sortedStudentsAsc)
                 Console.WriteLine(stud.Name + ", " + stud.Age);
 
             Console.WriteLine();
 
-            //  По убыванию
-            var sortedStudentsDesc = students.OrderByDescending(s => s.Age);
+            // Сортировка по имени и возрасту (убывание)
+            var sortedStudentsDesc = students
+               .OrderByDescending(s => s.Name)
+               .ThenByDescending(s => s.Age);
 
             foreach (var stud in sortedStudentsDesc)
                 Console.WriteLine(stud.Name + ", " + stud.Age);
