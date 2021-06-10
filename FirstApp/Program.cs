@@ -17,16 +17,26 @@ namespace FirstApp
                new Student {Name="Василий", Age=24, Languages = new List<string> {"испанский", "немецкий" }}
             };
 
-            var studentApplications = from s in students
+            // выборка имен в строки
+            var names = students.Select(u => u.Name);
 
-                                          // создадим анонимный тип для представления анкеты
-                                      select new
-                                      {
-                                          FirstName = s.Name,
-                                          YearOfBirth = DateTime.Now.Year - s.Age
-                                      };
+            // проекция в анонимный тип
+            var applications = students.Select(u => new
+            {
+                FirstName = u.Name,
+                YearOfBirth = DateTime.Now.Year - u.Age
+            });
+
+            // проекция в другой тип
+            //var applications1 = students.Select(u => new Application()
+            //{
+            //    FirstName = u.Name,
+            //    YearOfBirth = DateTime.Now.Year - u.Age
+            //});
+
+
             // Выведем результат
-            foreach (var application in studentApplications)
+            foreach (var application in applications)
                 Console.WriteLine($"{application.FirstName}, {application.YearOfBirth}");
         }
     }
