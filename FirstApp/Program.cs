@@ -16,18 +16,17 @@ namespace FirstApp
                new Student {Name="Василий", Age=24, Languages = new List<string> {"испанский", "немецкий" }}
             };
 
-            var fullNameStudents = from s in students
-                                       // временная переменная для генерации полного имени
-                                   let fullName = s.Name + " Иванов"
-                                   // проекция в новую сущность с использованием новой переменной
-                                   select new
-                                   {
-                                       Name = fullName,
-                                       Age = s.Age
-                                   };
+            var anketas = from s in students
+                          where s.Age < 27
+                          let yearOfBirth = DateTime.Now.Year - s.Age
+                          select new Application()
+                          {
+                              Name = s.Name,
+                              YearOfBirth = yearOfBirth
+                          };
 
-            foreach (var stud in fullNameStudents)
-                Console.WriteLine(stud.Name + ", " + stud.Age);
+            foreach (var anketa in anketas)
+                Console.WriteLine(anketa.Name + ", " + anketa.YearOfBirth);
         }
     }
 
@@ -36,6 +35,12 @@ namespace FirstApp
         public string Name { get; set; }
         public int Age { get; set; }
         public List<string> Languages { get; set; }
+    }
+
+    public class Application
+    {
+        public string Name { get; set; }
+        public int YearOfBirth { get; set; }
     }
 }
 
