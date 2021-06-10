@@ -8,55 +8,51 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var contacts = new List<Contact>()
+            // Подготовка данных
+            var cars = new List<Car>()
             {
-               new Contact() { Name = "Андрей", PhoneNumber = 7999945005 },
-               new Contact() { Name = "Сергей", PhoneNumber = 799990455 },
-               new Contact() { Name = "Иван", PhoneNumber = 79999675 },
-               new Contact() { Name = "Игорь", PhoneNumber = 8884994 },
-               new Contact() { Name = "Анна", PhoneNumber = 665565656 },
-               new Contact() { Name = "Василий", PhoneNumber = 3434 }
+               new Car("Suzuki", "JP"),
+               new Car("Toyota", "JP"),
+               new Car("Opel", "DE"),
+               new Car("Kamaz", "RUS"),
+               new Car("Lada", "RUS"),
+               new Car("Lada", "RUS"),
+               new Car("Honda", "JP"),
             };
 
-            // бесконечный цикл, ожидающий ввод с консоли
-            while (true)
-            {
-                var keyChar = Console.ReadKey().KeyChar; // получаем символ с консоли
-                Console.Clear();  //  очистка консоли от введенного текста
+            Console.WriteLine("Пропустим японские машины в начале списка");
+            var notJapanCars = cars.SkipWhile(car => car.CountryCode == "JP");
 
-                if (!Char.IsDigit(keyChar))
-                {
-                    Console.WriteLine("Ошибка ввода, введите число");
-                }
-                else
-                {
-                    IEnumerable<Contact> page = null;
+            foreach (var notJapanCar in notJapanCars)
+                Console.WriteLine(notJapanCar.Manufacturer);
 
-                    switch (keyChar)
-                    {
-                        case '1':
-                            page = contacts.Take(2);
-                            break;
-                        case '2':
-                            page = contacts.Skip(2).Take(2);
-                            break;
-                        case '3':
-                            page = contacts.Skip(4);
-                            break;
-                    }
+            Console.WriteLine();
 
-                    //   проверим, что ввели существующий номер страницы
-                    if (page == null)
-                    {
-                        Console.WriteLine($"Ошибка ввода, страницы {keyChar} не существует");
-                        continue;
-                    }
+            Console.WriteLine("Теперь выберем только японские машины из начала списка");
+            var japanCars = cars.TakeWhile(car => car.CountryCode == "JP");
 
-                    // вывод результата на консоль
-                    foreach (var contact in page)
-                        Console.WriteLine(contact.Name + " " + contact.PhoneNumber);
-                }
-            }
+            foreach (var japanCar in japanCars)
+                Console.WriteLine(japanCar.Manufacturer);
+
+            Console.WriteLine();
+
+            Console.WriteLine("Пропустим все японские машины");
+            cars.RemoveAll(car => car.CountryCode == "JP");
+
+            foreach (var notJapan in cars)
+                Console.WriteLine(notJapan.Manufacturer);
+        }
+    }
+
+    public class Car
+    {
+        public string Manufacturer { get; set; }
+        public string CountryCode { get; set; }
+
+        public Car(string manufacturer, string countryCode)
+        {
+            Manufacturer = manufacturer;
+            CountryCode = countryCode;
         }
     }
 }
