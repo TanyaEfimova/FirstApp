@@ -24,12 +24,19 @@ namespace FirstApp
 
             // добавим студентов в курсы
             var studentsWithCourses = from student in students
+                                      where student.Age < 29 && student.Languages.Contains("английский")
                                       from course in courses
-                                      select new { Name = student.Name, CourseName = course.Name };
+                                      where course.Name == "Язык программирования C#"
+                                      select new
+                                      {
+                                          Name = student.Name,
+                                          YearOfBirth = DateTime.Now.Year - student.Age,
+                                          CourseName = course.Name
+                                      };
 
             // выведем результат
             foreach (var stud in studentsWithCourses)
-                Console.WriteLine($"Студент {stud.Name} добавлен в курс {stud.CourseName}");
+                Console.WriteLine($"Студент {stud.Name} {stud.YearOfBirth} добавлен в курс {stud.CourseName}");
         }
     }
 
