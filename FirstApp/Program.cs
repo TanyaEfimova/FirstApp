@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FirstApp
@@ -8,44 +7,37 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            // Подготовим данные
-            List<Student> students = new List<Student>
+            string[] words = { "Обезьяна", "Лягушка", "Кот", "Собака", "Черепаха" };
+
+            var sorted = from word in words
+                         orderby word.Length
+                         select new
+                         {
+                             Name = word,
+                             Size = word.Length
+                         };
+            foreach (var item in sorted)
             {
-               new Student {Name="Андрей", Age=23, Languages = new List<string> {"английский", "немецкий" }},
-               new Student {Name="Сергей", Age=27, Languages = new List<string> {"английский", "французский" }},
-               new Student {Name="Дмитрий", Age=29, Languages = new List<string> {"английский", "испанский" }},
-               new Student {Name="Василий", Age=24, Languages = new List<string> {"испанский", "немецкий" }}
-            };
+                Console.WriteLine("Животное:{0}, длина слова:{1}", item.Name, item.Size);
+            }
 
-            // выборка имен в строки
-            var names = students.Select(u => u.Name);
-
-            // проекция в анонимный тип
-            var applications = students.Select(u => new
-            {
-                FirstName = u.Name,
-                YearOfBirth = DateTime.Now.Year - u.Age
-            });
-
-            // проекция в другой тип
-            //var applications1 = students.Select(u => new Application()
-            //{
-            //    FirstName = u.Name,
-            //    YearOfBirth = DateTime.Now.Year - u.Age
-            //});
+            //---------------------------------------------------------
+            //с помощью методов расширения:
+            var wordsInfo = words.Select(w =>
+              new
+              {  // Выборка в анонимный тип
+                  Name = w,
+                  Length = w.Length // Длину слова сохраняем сразу в свойство нового анонимного типа
+              })
+               .OrderBy(word => word.Length); //  сортируем коллекцию по длине
 
 
-            // Выведем результат
-            foreach (var application in applications)
-                Console.WriteLine($"{application.FirstName}, {application.YearOfBirth}");
+            // выводим
+            foreach (var word in wordsInfo)
+                Console.WriteLine($"{word.Name} - {word.Length} букв");
+
+            //---------------------------------------------------------
         }
-    }
-
-    class Student
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public List<string> Languages { get; set; }
     }
 }
 
