@@ -8,25 +8,28 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var numsList = new List<int[]>()
+            // Подготовим данные
+            List<Student> students = new List<Student>
             {
-               new[] {2, 3, 7, 1},
-               new[] {45, 17, 88, 0},
-               new[] {23, 32, 44, -6},
+               new Student {Name="Андрей", Age=23, Languages = new List<string> {"английский", "немецкий" }},
+               new Student {Name="Сергей", Age=27, Languages = new List<string> {"английский", "французский" }},
+               new Student {Name="Дмитрий", Age=29, Languages = new List<string> {"английский", "испанский" }},
+               new Student {Name="Василий", Age=24, Languages = new List<string> {"испанский", "немецкий" }}
             };
 
-            var numbers = from sequence in numsList
-                          from number in sequence
-                          orderby number
-                          select number;
+            var names = from s in students select s.Name;
 
-            //или так: var numbers = numsList.SelectMany(s => s).OrderBy(s => s);
-
-            foreach (var num in numbers)
-            {
-                Console.WriteLine(num);
-            }
+            // Выведем результат
+            foreach (var name in names)
+                Console.WriteLine(name);
         }
+    }
+
+    class Student
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public List<string> Languages { get; set; }
     }
 }
 
