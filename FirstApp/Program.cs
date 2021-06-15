@@ -8,16 +8,14 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            // Список напитков в продаже
-            string[] drinks = { "Вода", "Кока-кола", "Лимонад", "Вино" };
-            // Алкогольные напитки
-            string[] alcohol = { "Вино", "Пиво", "Сидр" };
+            string[] cars = { "Волга", "Москвич", "Нива", "Газель" };
+            string[] buses = { "Газель", "Икарус", "ЛиАЗ" };
 
-            // Убираем алкоголь из ассортимента
-            var drinksForKids = drinks.Except(alcohol);
+            // поищем машины, которые можно считать микроавтобусами
+            var microBuses = cars.Intersect(buses);
 
-            foreach (string drink in drinksForKids)
-                Console.WriteLine(drink);
+            foreach (string mb in microBuses)
+                Console.WriteLine(mb);
         }
     }
 }
