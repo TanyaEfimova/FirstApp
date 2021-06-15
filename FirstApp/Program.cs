@@ -11,7 +11,7 @@ namespace FirstApp
             string[] cars = { "Волга", "Москвич", "Москвич", "Нива", "Газель" };
             string[] buses = { "Газель", "Икарус", "ЛиАЗ" };
 
-            var vehicles = cars.Union(buses);
+            var vehicles = cars.Union(buses);  // или так: cars.Concat(buses).Distinct();
 
             foreach (string v in vehicles)
                 Console.WriteLine(v);
