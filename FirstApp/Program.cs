@@ -8,14 +8,13 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            string[] cars = { "Волга", "Москвич", "Нива", "Газель" };
+            string[] cars = { "Волга", "Москвич", "Москвич", "Нива", "Газель" };
             string[] buses = { "Газель", "Икарус", "ЛиАЗ" };
 
-            // поищем машины, которые можно считать микроавтобусами
-            var microBuses = cars.Intersect(buses);
+            var vehicles = cars.Union(buses);
 
-            foreach (string mb in microBuses)
-                Console.WriteLine(mb);
+            foreach (string v in vehicles)
+                Console.WriteLine(v);
         }
     }
 }
