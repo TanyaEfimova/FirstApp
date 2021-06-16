@@ -8,22 +8,29 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var softwareManufacturers = new List<string>()
-            {
-               "Microsoft", "Apple", "Oracle"
-            };
+            Console.WriteLine("Введите текст:");
 
-            var hardwareManufacturers = new List<string>()
-            {
-               "Apple", "Samsung", "Intel"
-            };
+            // читаем ввод
+            var text = Console.ReadLine();
 
-            var itCompanies = softwareManufacturers.Union(hardwareManufacturers);
+            // сохраняем список знаков препинания и символ пробела в коллекцию
+            var punctuation = new List<char>() { ' ', ',', '.', ';', ':', '!', '?' };
 
-            foreach (var item in itCompanies)
+            // валидация ввода
+            if (string.IsNullOrEmpty(text))
             {
-                Console.WriteLine(item);
+                Console.WriteLine("Вы ввели пустой текст");
+                return;
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Текст без повторов, пробелов и знаков препинания: ");
+
+            // так как строка - это массив char, мы можем вызвать метод  except  и удалить знаки препинания
+            var noPunctuation = text.Except(punctuation).ToArray();
+
+            // вывод
+            Console.WriteLine(noPunctuation);
         }
     }
 }
