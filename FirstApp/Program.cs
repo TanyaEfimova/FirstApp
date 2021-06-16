@@ -8,13 +8,26 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            string[] cars = { "Волга", "Москвич", "Москвич", "Нива", "Газель" };
-            string[] buses = { "Газель", "Икарус", "ЛиАЗ" };
+            Console.WriteLine("Введите первое слово:");
+            var word1 = Console.ReadLine();
 
-            var vehicles = cars.Union(buses);  // или так: cars.Concat(buses).Distinct();
+            Console.WriteLine("Введите второе слово:");
+            var word2 = Console.ReadLine();
 
-            foreach (string v in vehicles)
-                Console.WriteLine(v);
+            var coll = CommonWords(word1, word2);
+
+            Console.WriteLine("Найдены такие общие буквы/символы:");
+            foreach (var item in coll)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        static IEnumerable<char> CommonWords(string word1, string word2)
+        {
+            var commonColl = word1.Intersect(word2);//   ищем пересечение
+
+            return commonColl;
         }
     }
 }
