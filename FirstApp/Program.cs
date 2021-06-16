@@ -8,26 +8,22 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите первое слово:");
-            var word1 = Console.ReadLine();
+            var softwareManufacturers = new List<string>()
+            {
+               "Microsoft", "Apple", "Oracle"
+            };
 
-            Console.WriteLine("Введите второе слово:");
-            var word2 = Console.ReadLine();
+            var hardwareManufacturers = new List<string>()
+            {
+               "Apple", "Samsung", "Intel"
+            };
 
-            var coll = CommonWords(word1, word2);
+            var itCompanies = softwareManufacturers.Union(hardwareManufacturers);
 
-            Console.WriteLine("Найдены такие общие буквы/символы:");
-            foreach (var item in coll)
+            foreach (var item in itCompanies)
             {
                 Console.WriteLine(item);
             }
-        }
-
-        static IEnumerable<char> CommonWords(string word1, string word2)
-        {
-            var commonColl = word1.Intersect(word2);//   ищем пересечение
-
-            return commonColl;
         }
     }
 }
