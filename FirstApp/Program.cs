@@ -8,24 +8,36 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите натуральное число:");
-            Int32.TryParse(Console.ReadLine(), out int number);
-            long result = Factorial(number);
-            Console.WriteLine("Факториал этого числа равен: {0}", result);
+            // Список студентов
+            var students = new List<Student>
+            {
+               new Student {Name="Андрей", Age=23 },
+               new Student {Name="Сергей", Age=27 },
+               new Student {Name="Дмитрий", Age=29 }
+            };
+
+            // получим тех кто младше 25
+            var youngStudentsAmount1 =
+               (from student in students
+                where student.Age < 25
+                select student).Count();
+
+            // выведет 1
+            Console.WriteLine(youngStudentsAmount1);
+
+            // получим тех, кто младше 25
+            var youngStudentsAmount2 = students.Count(s => s.Age < 25);
+
+            // тоже выведет 1
+            Console.WriteLine(youngStudentsAmount2);
         }
+    }
 
-        static long Factorial(int number)
-        {
-            // Коллекция для хранения чисел
-            var numbers = new List<int>();
-
-            // Добавляем все числа от 1 до n в коллекцию
-            for (int i = 1; i <= number; i++)
-                numbers.Add(i);
-
-            // Выполняем агрегацию
-            return numbers.Aggregate((x, y) => x * y);
-        }
+    class Student
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public List<string> Languages { get; set; }
     }
 }
 
