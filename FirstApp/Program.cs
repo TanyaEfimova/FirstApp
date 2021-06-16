@@ -8,43 +8,29 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            // Список студентов
-            var students = new List<Student>
+            var contacts = new List<Contact>()
             {
-               new Student {Name="Андрей", Age=23 },
-               new Student {Name="Сергей", Age=27 },
-               new Student {Name="Дмитрий", Age=29 }
+               new Contact() { Name = "Андрей", PhoneNumber = 79994500508 },
+               new Contact() { Name = "Сергей", PhoneNumber = 799990455 },
+               new Contact() { Name = "Иван", PhoneNumber = 79999675334 },
+               new Contact() { Name = "Игорь", PhoneNumber = 8884994 },
+               new Contact() { Name = "Анна", PhoneNumber = 665565656 },
+               new Contact() { Name = "Василий", PhoneNumber = 3434 }
             };
 
-            // получим тех кто младше 25
-            var youngStudentsAmount1 =
-               (from student in students
-                where student.Age < 25
-                select student).Count();
+            //I способ
+            var youngContactsAmount = contacts.Count(s => s.PhoneNumber.ToString().Length != 11 || !s.PhoneNumber.ToString().StartsWith("7"));
+            Console.WriteLine(youngContactsAmount);
 
-            // выведет 1
-            Console.WriteLine(youngStudentsAmount1);
-
-            // получим тех, кто младше 25
-            var youngStudentsAmount2 = students.Count(s => s.Age < 25);
-
-            // тоже выведет 1
-            Console.WriteLine(youngStudentsAmount2);
+            //II способ
+            var invalidContacts = (from contact in contacts // пробегаемся по контактам
+                                   let phoneString = contact.PhoneNumber.ToString() // сохраняем в промежуточную переменную строку номера телефона
+                                   where !phoneString.StartsWith('7') || phoneString.Length != 11 // выполняем выборку по условиям
+                                   select contact) // добавляем объект в выборку
+                                .Count(); // считаем количество объектов в выборке
+            Console.WriteLine(invalidContacts);
         }
     }
-
-    class Student
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public List<string> Languages { get; set; }
-    }
 }
-
-
-
-
-
-
 
 
