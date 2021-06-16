@@ -8,29 +8,14 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите текст:");
+            int[] numbers = { 1, 2, 3, 4, 5 };
 
-            // читаем ввод
-            var text = Console.ReadLine();
+            int result = numbers.Aggregate((x, y) => x - y);
+            // вычислит 1-2-3-4-5 = -13
+            Console.WriteLine(result);
 
-            // сохраняем список знаков препинания и символ пробела в коллекцию
-            var punctuation = new List<char>() { ' ', ',', '.', ';', ':', '!', '?' };
-
-            // валидация ввода
-            if (string.IsNullOrEmpty(text))
-            {
-                Console.WriteLine("Вы ввели пустой текст");
-                return;
-            }
-
-            Console.WriteLine();
-            Console.WriteLine("Текст без повторов, пробелов и знаков препинания: ");
-
-            // так как строка - это массив char, мы можем вызвать метод  except  и удалить знаки препинания
-            var noPunctuation = text.Except(punctuation).ToArray();
-
-            // вывод
-            Console.WriteLine(noPunctuation);
+            int sum = numbers.Aggregate((x, y) => x + y);
+            Console.WriteLine(sum);
         }
     }
 }
