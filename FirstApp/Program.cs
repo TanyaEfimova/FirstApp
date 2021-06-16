@@ -8,14 +8,23 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            int[] numbers = { 1, 2, 3, 4, 5 };
+            Console.WriteLine("Введите натуральное число:");
+            Int32.TryParse(Console.ReadLine(), out int number);
+            long result = Factorial(number);
+            Console.WriteLine("Факториал этого числа равен: {0}", result);
+        }
 
-            int result = numbers.Aggregate((x, y) => x - y);
-            // вычислит 1-2-3-4-5 = -13
-            Console.WriteLine(result);
+        static long Factorial(int number)
+        {
+            // Коллекция для хранения чисел
+            var numbers = new List<int>();
 
-            int sum = numbers.Aggregate((x, y) => x + y);
-            Console.WriteLine(sum);
+            // Добавляем все числа от 1 до n в коллекцию
+            for (int i = 1; i <= number; i++)
+                numbers.Add(i);
+
+            // Выполняем агрегацию
+            return numbers.Aggregate((x, y) => x * y);
         }
     }
 }
