@@ -8,28 +8,37 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var contacts = new List<Contact>()
+            //Простое сложение:
+
+            var simpleNumbers = new[] { 3, 5, 7 };
+
+            // Вернет 15
+            Console.WriteLine(simpleNumbers.Sum());
+            //-------------------------------------------------------
+
+            //Сложный тип данных, сложение свойств:
+
+            // Список студентов
+            var students = new List<Student>
             {
-               new Contact() { Name = "Андрей", PhoneNumber = 79994500508 },
-               new Contact() { Name = "Сергей", PhoneNumber = 799990455 },
-               new Contact() { Name = "Иван", PhoneNumber = 79999675334 },
-               new Contact() { Name = "Игорь", PhoneNumber = 8884994 },
-               new Contact() { Name = "Анна", PhoneNumber = 665565656 },
-               new Contact() { Name = "Василий", PhoneNumber = 3434 }
+               new Student {Name="Андрей", Age=23 },
+               new Student {Name="Сергей", Age=27 },
+               new Student {Name="Дмитрий", Age=29 }
             };
 
-            //I способ
-            var youngContactsAmount = contacts.Count(s => s.PhoneNumber.ToString().Length != 11 || !s.PhoneNumber.ToString().StartsWith("7"));
-            Console.WriteLine(youngContactsAmount);
+            // сумма возрастов всех студентов
+            var totalAge = students.Sum(s => s.Age);
 
-            //II способ
-            var invalidContacts = (from contact in contacts // пробегаемся по контактам
-                                   let phoneString = contact.PhoneNumber.ToString() // сохраняем в промежуточную переменную строку номера телефона
-                                   where !phoneString.StartsWith('7') || phoneString.Length != 11 // выполняем выборку по условиям
-                                   select contact) // добавляем объект в выборку
-                                .Count(); // считаем количество объектов в выборке
-            Console.WriteLine(invalidContacts);
+            // Вернет 79
+            Console.WriteLine(totalAge);
         }
+    }
+
+    class Student
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public List<string> Languages { get; set; }
     }
 }
 
