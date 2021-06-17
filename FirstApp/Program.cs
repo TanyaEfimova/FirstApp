@@ -8,29 +8,41 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var students = new List<Student>
-            {
-               new Student {Name="Андрей", Age=23 },
-               new Student {Name="Сергей", Age=27 },
-               new Student {Name="Дмитрий", Age=29 }
-            };
+            //________________________________без Array()__________________________________
+            //  Подготовим тестовые данные
+            var names1 = new List<string>() { "Вася", "Вова", "Петя", "Андрей" };
 
-            // здесь запрос будет выполнен немедленно, и в переменную будет сохранено количество элементов выборки
-            var youngStudents = (from s in students where s.Age < 25 select s).Count();
+            // Подготовим тестовую выборку (без ToArray())
+            var experiment1 = names1.Where(name => name.StartsWith("В"));
 
-            // Добавим нового студента уже после инициализанции LINQ-запроса
-            students.Add(new Student { Name = "Анна", Age = 21 });
+            // уберем несколько элементов уже после выборки (если она выполняется отложено, то они в неё не попадут)
+            names1.Remove("Вася");
+            names1.Remove("Вова");
 
-                Console.WriteLine(youngStudents);
+            Console.WriteLine("без Array():");
+            // обратимся к выборке в цикле foreach
+            foreach (var word in experiment1)
+                Console.WriteLine(word);
 
-            var youngStudents2 = students
-                               .Where(s => s.Age < 25) // на этом этапе происходит генерация LINQ-выражения
-                               .ToList(); // А вот тут уже будет выполнение
+            Console.WriteLine();
 
+            //___________________________________с Array()______________________________________
+            //  Снова возьмем те же тестовые данные
+            var names2 = new List<string>() { "Вася", "Вова", "Петя", "Андрей" };
+
+            // Теперь добавим ToArray() в конце того же самого LINQ-запроса
+            var experiment2 = names2.Where(name => name.StartsWith("В")).ToArray();
+
+            // Также уберем несколько элементов
+            names2.Remove("Вася");
+            names2.Remove("Вова");
+
+            Console.WriteLine("c Array():");
+            // обратимся к выборку в цикле foreach
+            foreach (var word in experiment2)
+                Console.WriteLine(word);
         }
     }
-
-
 }
 
 
