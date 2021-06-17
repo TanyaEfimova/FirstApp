@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace FirstApp
@@ -8,17 +7,39 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            //  объявляем две коллекции
-            var letters = new string[] { "A", "B", "C", "D", "E" };
-            var numbers = new int[] { 1, 2, 3 };
+            var customers = new Customer[]
+            {
+                new Customer{ID = 5, Name = "Андрей"},
+                new Customer{ID = 6, Name = "Сергей"},
+                new Customer{ID = 7, Name = "Юлия"},
+                new Customer{ID = 8, Name = "Анна"}
+            };
 
-            // проводим "упаковку" элементов, сопоставляя попарно
-            var q = letters.Zip(numbers, (l, n) => l + n.ToString());
+            var orders = new Order[]
+            {
+                new Order{ID = 6, Product = "Игру"},
+                new Order{ID = 7, Product = "Компьютер"},
+                new Order{ID = 8, Product = "Рубашку"} ,
+                new Order{ID = 5, Product = "Книгу"}
+            };
 
-            // вывод
-            foreach (var s in q)
-                Console.WriteLine(s);
+            var query = from c in customers
+                        join o in orders on c.ID equals o.ID
+                        select new { c.Name, o.Product };
+            foreach (var group in query)
+                Console.WriteLine($"{group.Name} покупает {group.Product}");
         }
+    }
+
+    public class Customer
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+    }
+    public class Order
+    {
+        public int ID { get; set; }
+        public string Product { get; set; }
     }
 }
 
