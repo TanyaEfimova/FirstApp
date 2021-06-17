@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FirstApp
@@ -7,40 +8,24 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var customers = new Customer[]
+            var students = new List<Student>
             {
-                new Customer{ID = 5, Name = "Андрей"},
-                new Customer{ID = 6, Name = "Сергей"},
-                new Customer{ID = 7, Name = "Юлия"},
-                new Customer{ID = 8, Name = "Анна"}
+               new Student {Name="Андрей", Age=23 },
+               new Student {Name="Сергей", Age=27 },
+               new Student {Name="Дмитрий", Age=29 }
             };
 
-            var orders = new Order[]
-            {
-                new Order{ID = 6, Product = "Игру"},
-                new Order{ID = 7, Product = "Компьютер"},
-                new Order{ID = 8, Product = "Рубашку"} ,
-                new Order{ID = 5, Product = "Книгу"}
-            };
+            var youngStudents = from s in students where s.Age < 25 select s;
 
-            var query = from c in customers
-                        join o in orders on c.ID equals o.ID
-                        select new { c.Name, o.Product };
-            foreach (var group in query)
-                Console.WriteLine($"{group.Name} покупает {group.Product}");
+            // Добавим нового студента уже после инициализанции LINQ-запроса
+            students.Add(new Student { Name = "Анна", Age = 21 });
+
+            foreach (var stud in youngStudents)
+                Console.WriteLine(stud.Name);
         }
     }
 
-    public class Customer
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-    public class Order
-    {
-        public int ID { get; set; }
-        public string Product { get; set; }
-    }
+
 }
 
 
