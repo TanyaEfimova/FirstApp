@@ -8,64 +8,47 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            // Список моделей
-            var cars = new List<Car>()
+            var departments = new List<Dеpartment>()
             {
-               new Car() { Model  = "SX4", Manufacturer = "Suzuki"},
-               new Car() { Model  = "Grand Vitara", Manufacturer = "Suzuki"},
-               new Car() { Model  = "Jimny", Manufacturer = "Suzuki"},
-               new Car() { Model  = "Land Cruiser Prado", Manufacturer = "Toyota"},
-               new Car() { Model  = "Camry", Manufacturer = "Toyota"},
-               new Car() { Model  = "Polo", Manufacturer = "Volkswagen"},
-               new Car() { Model  = "Passat", Manufacturer = "Volkswagen"},
+               new Dеpartment() {Id = 1, Name = "Программирование"},
+               new Dеpartment() {Id = 2, Name = "Продажи"},
+               new Dеpartment() {Id = 3, Name = "Бухгалтерия"}
             };
 
-            // Список автопроизводителей
-            var manufacturers = new List<Manufacturer>()
+            var employees = new List<Еmployee>()
             {
-               new Manufacturer() { Country = "Japan", Name = "Suzuki" },
-               new Manufacturer() { Country = "Japan", Name = "Toyota" },
-               new Manufacturer() { Country = "Germany", Name = "Volkswagen" },
+               new Еmployee() { DepartmentId = 1, Name = "Инна", Id = 1},
+               new Еmployee() { DepartmentId = 1, Name = "Андрей", Id = 2},
+               new Еmployee() { DepartmentId = 2, Name = "Виктор", Id = 3},
+               new Еmployee() { DepartmentId = 3, Name = "Альберт", Id = 4},
             };
 
-            var result = from car in cars // выберем машины
-                         join m in manufacturers on car.Manufacturer equals m.Name // соединим по общему ключу (имя производителя) с производителями
-                         select new //   спроецируем выборку в новую анонимную сущность
+            var result = from employee in employees
+                         join department in departments on employee.DepartmentId equals department.Id
+                         select new
                          {
-                             Name = car.Model,
-                             Manufacturer = m.Name,
-                             Country = m.Country
+                             Employee = employee.Name,
+                             Department = department.Name
                          };
 
             // выведем результаты
             foreach (var item in result)
-                Console.WriteLine($"{item.Name} - {item.Manufacturer} ({item.Country})");
-
-            //или с помощью метода расширения:
-            var result2 = cars.Join(manufacturers, // передаем в качестве параметра вторую коллекцию
-                           car => car.Manufacturer, // указываем общее свойство для первой коллекции
-                           m => m.Name, // указываем общее свойство для второй коллекции
-                           (car, m) =>
-                               new // проекция в новый тип
-                               {
-                                   Name = car.Model,
-                                   Manufacturer = m.Name,
-                                   Country = m.Country
-                               });
+                Console.WriteLine($"{item.Employee} работает в отделе {item.Department}");
         }
     }
 
-    public class Car
+    public class Dеpartment
     {
-        public string Model { get; set; }
-        public string Manufacturer { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
-    // Завод - изготовитель
-    public class Manufacturer
+
+    public class Еmployee
     {
+        public int DepartmentId { get; set; }
         public string Name { get; set; }
-        public string Country { get; set; }
+        public int Id { get; set; }
     }
 }
 
