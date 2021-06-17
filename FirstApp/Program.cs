@@ -23,17 +23,27 @@ namespace FirstApp
                new Еmployee() { DepartmentId = 3, Name = "Альберт", Id = 4},
             };
 
-            var result = from employee in employees
-                         join department in departments on employee.DepartmentId equals department.Id
-                         select new
-                         {
-                             Employee = employee.Name,
-                             Department = department.Name
-                         };
+            var depsWithEmployees = departments.GroupJoin(
+                                    employees, // первый набор данных
+                                    d => d.Id, // общее свойство второго набора
+                                    e => e.DepartmentId, // общее свойство первого набора
+                                    (d, emps) => new  // результат выборки
+                                    {
+                                        Name = d.Name,
+                                        Employees = emps.Select(e => e.Name)
+                                    });
 
-            // выведем результаты
-            foreach (var item in result)
-                Console.WriteLine($"{item.Employee} работает в отделе {item.Department}");
+            // Пробегаемся по каждому отделу
+            foreach (var dep in depsWithEmployees)
+            {
+                Console.WriteLine(dep.Name + ":");
+
+                // Выводим сотрудников
+                foreach (string emp in dep.Employees)
+                    Console.WriteLine(emp);
+
+                Console.WriteLine();
+            }
         }
     }
 
