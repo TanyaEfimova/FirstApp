@@ -8,44 +8,64 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            var phoneBook = new List<Contact>();
-
-            // добавляем контакты
-            phoneBook.Add(new Contact("Игорь", 79990000001, "igor@example.com"));
-            phoneBook.Add(new Contact("Сергей", 79990000010, "serge@example.com"));
-            phoneBook.Add(new Contact("Анатолий", 79990000011, "anatoly@example.com"));
-            phoneBook.Add(new Contact("Валерий", 79990000012, "valera@example.com"));
-            phoneBook.Add(new Contact("Сергей", 799900000013, "serg@gmail.com"));
-            phoneBook.Add(new Contact("Иннокентий", 799900000013, "innokentii@example.com"));
-            phoneBook.Add(new Contact("Андрей", 7999000000532, "andrey@yandex.ru"));
-
-            // Группировка по email
-            var contactsByEmail = from contact in phoneBook
-                                  group contact by contact.Email.Split("@").Last().Contains("example");
-
-            // Пробежимся по группам
-            foreach (var grouping in contactsByEmail)
+            // Список моделей
+            var cars = new List<Car>()
             {
-                if (grouping.Key)
-                {
-                    Console.WriteLine("Фейковые:");
+               new Car() { Model  = "SX4", Manufacturer = "Suzuki"},
+               new Car() { Model  = "Grand Vitara", Manufacturer = "Suzuki"},
+               new Car() { Model  = "Jimny", Manufacturer = "Suzuki"},
+               new Car() { Model  = "Land Cruiser Prado", Manufacturer = "Toyota"},
+               new Car() { Model  = "Camry", Manufacturer = "Toyota"},
+               new Car() { Model  = "Polo", Manufacturer = "Volkswagen"},
+               new Car() { Model  = "Passat", Manufacturer = "Volkswagen"},
+            };
 
-                    // внутри каждой группы пробежимся по элементам
-                    foreach (var contact in grouping)
-                        Console.WriteLine(contact.Name + " " + contact.Email);
-                    Console.WriteLine();
-                }
-                else
-                {
-                    Console.WriteLine("Реальные:");
+            // Список автопроизводителей
+            var manufacturers = new List<Manufacturer>()
+            {
+               new Manufacturer() { Country = "Japan", Name = "Suzuki" },
+               new Manufacturer() { Country = "Japan", Name = "Toyota" },
+               new Manufacturer() { Country = "Germany", Name = "Volkswagen" },
+            };
 
-                    // внутри каждой группы пробежимся по элементам
-                    foreach (var contact in grouping)
-                        Console.WriteLine(contact.Name + " " + contact.Email);
-                    Console.WriteLine();
-                }
-            }
+            var result = from car in cars // выберем машины
+                         join m in manufacturers on car.Manufacturer equals m.Name // соединим по общему ключу (имя производителя) с производителями
+                         select new //   спроецируем выборку в новую анонимную сущность
+                         {
+                             Name = car.Model,
+                             Manufacturer = m.Name,
+                             Country = m.Country
+                         };
+
+            // выведем результаты
+            foreach (var item in result)
+                Console.WriteLine($"{item.Name} - {item.Manufacturer} ({item.Country})");
+
+            //или с помощью метода расширения:
+            var result2 = cars.Join(manufacturers, // передаем в качестве параметра вторую коллекцию
+                           car => car.Manufacturer, // указываем общее свойство для первой коллекции
+                           m => m.Name, // указываем общее свойство для второй коллекции
+                           (car, m) =>
+                               new // проекция в новый тип
+                               {
+                                   Name = car.Model,
+                                   Manufacturer = m.Name,
+                                   Country = m.Country
+                               });
         }
+    }
+
+    public class Car
+    {
+        public string Model { get; set; }
+        public string Manufacturer { get; set; }
+    }
+
+    // Завод - изготовитель
+    public class Manufacturer
+    {
+        public string Name { get; set; }
+        public string Country { get; set; }
     }
 }
 
