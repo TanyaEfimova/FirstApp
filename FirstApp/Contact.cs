@@ -12,6 +12,14 @@ namespace FirstApp
             PhoneNumber = 0;
             Email = "";
         }
+
+        public Contact(string name, long phoneNumber, String email) // метод-конструктор
+        {
+            Name = name;
+            PhoneNumber = phoneNumber;
+            Email = email;
+        }
+
         public Contact(string name, string lastName, long phoneNumber, String email) // метод-конструктор
         {
             Name = name;
