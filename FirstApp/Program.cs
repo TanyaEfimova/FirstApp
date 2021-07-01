@@ -8,39 +8,49 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            //________________________________без Array()__________________________________
-            //  Подготовим тестовые данные
-            var names1 = new List<string>() { "Вася", "Вова", "Петя", "Андрей" };
 
-            // Подготовим тестовую выборку (без ToArray())
-            var experiment1 = names1.Where(name => name.StartsWith("В"));
+        }
 
-            // уберем несколько элементов уже после выборки (если она выполняется отложено, то они в неё не попадут)
-            names1.Remove("Вася");
-            names1.Remove("Вова");
+        public static String GetDayOfWeek(int day)
+        {
+            if ((day < 1) || (day > 7))
+                throw new InvalidOperationException("День недели должен быть в диапазоне 1 to 7");
 
-            Console.WriteLine("без Array():");
-            // обратимся к выборке в цикле foreach
-            foreach (var word in experiment1)
-                Console.WriteLine(word);
+            string[] days =
+            {
+                   "Monday",
+                   "Tuesday",
+                   "Wednesday",
+                   "Thursday",
+                   "Friday",
+                   "Saturday",
+                   "Sunday"
+            };
 
-            Console.WriteLine();
+            return days[day - 1];
+        }
 
-            //___________________________________с Array()______________________________________
-            //  Снова возьмем те же тестовые данные
-            var names2 = new List<string>() { "Вася", "Вова", "Петя", "Андрей" };
-
-            // Теперь добавим ToArray() в конце того же самого LINQ-запроса
-            var experiment2 = names2.Where(name => name.StartsWith("В")).ToArray();
-
-            // Также уберем несколько элементов
-            names2.Remove("Вася");
-            names2.Remove("Вова");
-
-            Console.WriteLine("c Array():");
-            // обратимся к выборку в цикле foreach
-            foreach (var word in experiment2)
-                Console.WriteLine(word);
+        public static String GetDayOfWeek2(int day)
+        {
+            switch (day)
+            {
+                case 1:
+                    return "Monday";
+                case 2:
+                    return "Tuesday";
+                case 3:
+                    return "Wednesday";
+                case 4:
+                    return "Thursday";
+                case 5:
+                    return "Friday";
+                case 6:
+                    return "Saturday";
+                case 7:
+                    return "Sunday";
+                default:
+                    throw new InvalidOperationException("День недели должен быть в диапазоне 1 to 7");
+            }
         }
     }
 }
