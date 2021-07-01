@@ -6,17 +6,19 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            // создаем объект приложения
-            Application app = new Application();
+            // Создание дракона через фабрику
+            var dragon = new Monster(new DragonFactory());
+            dragon.Move();
+            dragon.Hit();
 
-            // запускаем наше приложение (внутри создается соединение с базой данных по переданному адресу)
-            app.Launch("10.30.60.80");
-            Console.WriteLine(app.DbConnection.Configuration);
+            Console.WriteLine();
+            // Создание орка через фабрику
+            var orc = new Monster(new OrcFactory());
+            orc.Move();
+            orc.Hit();
 
-            // Теперь пробуем создать новое соединение с базой данных уже по другому адресу
-            app.DbConnection = DbConnection.GetConnectionInstance("10.30.60.81");
-            // у нас не получилось, так как объект уже существует
-            Console.WriteLine(app.DbConnection.Configuration);
+            Console.WriteLine();
+            Console.WriteLine("Всем конец...");
         }
     }
 }
